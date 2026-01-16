@@ -129,15 +129,14 @@ export default function Hero({ imageUrl = heroLocal }) {
 
                   {/* Description */}
                   <p className="text-gray-600 font-poppins font-light max-w-lg mb-8 leading-relaxed text-center md:text-left mx-auto md:mx-0">
-                    We coach leaders and teams to think clearly, make confident
-                    decisions, and execute strategies that drive measurable
-                    results.
+                    Leadership and team coaching that builds clarity, strengthens decision-making, and delivers measurable results.         decisions, and execute strategies that drive measurable
+                    
                   </p>
 
                   {/* CTAs */}
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-10">
                     <button className="group relative overflow-hidden bg-[#f86f17] text-white px-8 py-3 rounded-full text-sm font-bold shadow-xl transform transition hover:scale-105 hover:shadow-2xl">
-                      <span className="relative z-10">Join Now</span>
+                      <span className="relative z-10">Learn More</span>
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </button>
 
