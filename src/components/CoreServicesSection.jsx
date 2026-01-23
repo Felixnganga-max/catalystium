@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Briefcase,
   ArrowRight,
   Target,
   TrendingUp,
   MessageSquare,
+  Award,
+  Users,
+  Zap,
 } from "lucide-react";
 
 export default function CoreServicesSection() {
   const [scrollY, setScrollY] = useState(0);
+  const servicesRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +34,11 @@ export default function CoreServicesSection() {
       description:
         "Executive and leadership coaching that builds clarity, confidence, and sustained performance.",
       color: "orange",
+      features: [
+        "1:1 Executive Coaching",
+        "Group Coaching",
+        "Leadership Development",
+      ],
     },
     {
       id: 2,
@@ -38,6 +47,7 @@ export default function CoreServicesSection() {
       description:
         "Strategic solutions that align teams, strengthen systems, and accelerate results.",
       color: "blue",
+      features: ["Strategy Alignment", "Team Development", "Change Management"],
     },
     {
       id: 3,
@@ -46,196 +56,205 @@ export default function CoreServicesSection() {
       description:
         "Keynotes and workshops that inspire action and deepen leadership capability.",
       color: "orange",
+      features: ["Keynote Speaking", "Workshops", "Leadership Insights"],
     },
   ];
 
   return (
-    <div className="relative backdrop-blur-md bg-white/60 overflow-hidden font-poppins">
-      {/* Background Patches */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <svg
-          className="absolute top-0 right-0 w-[800px] h-[700px] opacity-100"
-          viewBox="0 0 500 400"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient
-              id="orangePatch1"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop
-                offset="0%"
-                style={{ stopColor: "#f86f17", stopOpacity: 0.3 }}
-              />
-              <stop
-                offset="100%"
-                style={{ stopColor: "#ff8c5a", stopOpacity: 0.15 }}
-              />
-            </linearGradient>
-          </defs>
-          <path
-            d="M500,0 Q300,50 200,120 T100,250 L500,400 Z"
-            fill="url(#orangePatch1)"
-          />
-        </svg>
-
-        <svg
-          className="absolute top-0 left-0 w-[850px] h-[800px] opacity-90"
-          viewBox="0 0 450 500"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="bluePatch1" x1="100%" y1="0%" x2="0%" y2="100%">
-              <stop
-                offset="0%"
-                style={{ stopColor: "#3b82f6", stopOpacity: 0.25 }}
-              />
-              <stop
-                offset="100%"
-                style={{ stopColor: "#1e40af", stopOpacity: 0.1 }}
-              />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0,100 Q150,150 250,200 T350,350 L0,500 Z"
-            fill="url(#bluePatch1)"
-          />
-        </svg>
-
-        <svg
-          className="absolute top-2 right-[10%] w-[800px] h-[500px] opacity-100"
-          viewBox="0 0 400 300"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient
-              id="orangePatch2"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop
-                offset="0%"
-                style={{ stopColor: "#fb923c", stopOpacity: 0.35 }}
-              />
-              <stop
-                offset="100%"
-                style={{ stopColor: "#f86f17", stopOpacity: 0.2 }}
-              />
-            </linearGradient>
-          </defs>
-          <ellipse
-            cx="200"
-            cy="150"
-            rx="200"
-            ry="150"
-            fill="url(#orangePatch2)"
-          />
-        </svg>
-
-        <div
-          className="absolute top-[15%] left-[8%] w-48 h-48 bg-blue-400/20 rounded-full blur-3xl"
-          style={
-            !isMobile
-              ? {
-                  transform: `translateY(${scrollY * 0.08}px)`,
-                }
-              : {}
-          }
-        ></div>
-
-        <div className="absolute bottom-32 right-[12%] text-white/10 font-bold text-6xl tracking-tighter rotate-12 select-none font-gothic">
-          EXCELLENCE
-        </div>
+    <div className="relative bg-white overflow-hidden">
+      {/* Subtle background accents */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-0 w-96 h-96 bg-blue-700/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-0 w-80 h-80 bg-[#f86f17]/5 rounded-full blur-3xl"></div>
       </div>
 
       {/* Main Section */}
-      <section className="py-16 md:py-20 px-6 md:px-12 relative">
-        <div className="max-w-[1300px] mx-auto relative z-10">
+      <section className="py-20 md:py-28 px-6 md:px-12 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-gray-300 px-4 py-1.5 rounded-full mb-4 shadow-sm">
-              <Briefcase className="w-4 h-4 text-[#f86f17]" strokeWidth={2} />
-              <span className="text-[10px] font-medium text-gray-700 tracking-wider uppercase font-poppins">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-[#efe7df] px-5 py-2 rounded-full mb-6 border border-blue-700/10">
+              <Briefcase className="w-4 h-4 text-blue-700" strokeWidth={2} />
+              <span className="text-xs font-medium text-[#6e6a64] tracking-wider">
                 Our Core Services
               </span>
             </div>
 
-            <div className="mb-8">
-              <h2 className="text-3xl md:text-5xl font-light text-gray-900 tracking-tight mb-4 leading-tight font-gothic">
-                <span className="font-semibold text-[#f86f17]">Coaching</span> &
-                Organizational Solutions
-              </h2>
-              <p className="text-base md:text-lg text-gray-600 font-light max-w-3xl mx-auto leading-relaxed font-poppins">
-                We partner with leaders and organizations to build capability,
-                drive alignment, and deliver measurable results through
-                coaching, strategy, and insight.
-              </p>
+            <h2 className="text-3xl md:text-5xl font-light text-[#151412] tracking-tight mb-4 leading-tight">
+              <span className="font-semibold text-blue-700">Coaching</span> &
+              Organizational Solutions
+            </h2>
+
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-20 h-px bg-blue-700/20"></div>
+              <Award className="w-4 h-4 text-[#f86f17]" strokeWidth={1.5} />
+              <div className="w-20 h-px bg-blue-700/20"></div>
             </div>
+
+            <p className="text-base md:text-lg text-[#6e6a64] font-light max-w-3xl mx-auto leading-relaxed">
+              We partner with leaders and organizations to build capability,
+              drive alignment, and deliver measurable results through coaching,
+              strategy, and insight.
+            </p>
           </div>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {/* Services Grid - Desktop */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8 mb-16">
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <div
-                  key={service.id}
-                  className="flex flex-col items-center text-center group"
-                >
+                <div key={service.id} className="group relative">
                   <div
-                    className={`w-20 h-20 rounded-full ${
+                    className={`absolute -inset-px rounded-2xl ${
                       service.color === "orange"
-                        ? "bg-[#f86f17]/10 group-hover:bg-[#f86f17]/20"
-                        : "bg-blue-100 group-hover:bg-blue-200"
-                    } flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 shadow-md`}
-                  >
-                    <Icon
-                      className={`w-10 h-10 ${
+                        ? "bg-[#f86f17]/10"
+                        : "bg-blue-700/10"
+                    } opacity-0 group-hover:opacity-100 transition-opacity blur-sm`}
+                  ></div>
+
+                  <div className="relative h-full bg-[#efe7df] rounded-2xl p-8 border border-[#d4c4b4] group-hover:border-blue-700/30 transition-all">
+                    <div
+                      className={`w-16 h-16 rounded-xl ${
                         service.color === "orange"
-                          ? "text-[#f86f17]"
-                          : "text-blue-700"
-                      }`}
-                      strokeWidth={2}
-                    />
+                          ? "bg-[#f86f17]"
+                          : "bg-blue-700"
+                      } flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}
+                    >
+                      <Icon className="w-7 h-7 text-white" strokeWidth={2} />
+                    </div>
+
+                    <h3 className="text-xl font-semibold text-[#151412] mb-3">
+                      {service.title}
+                    </h3>
+
+                    <div
+                      className={`w-12 h-px ${
+                        service.color === "orange"
+                          ? "bg-[#f86f17]"
+                          : "bg-blue-700"
+                      } mb-4`}
+                    ></div>
+
+                    <p className="text-sm text-[#6e6a64] leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+
+                    {/* Features list */}
+                    <div className="space-y-2">
+                      {service.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <div
+                            className={`w-1 h-1 rounded-full ${
+                              service.color === "orange"
+                                ? "bg-[#f86f17]"
+                                : "bg-blue-700"
+                            } mt-2 flex-shrink-0`}
+                          ></div>
+                          <span className="text-xs text-[#6e6a64]">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Hover arrow */}
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div
+                        className={`inline-flex items-center gap-2 text-sm ${
+                          service.color === "orange"
+                            ? "text-[#f86f17]"
+                            : "text-blue-700"
+                        } font-medium`}
+                      >
+                        Learn more
+                        <ArrowRight className="w-4 h-4" strokeWidth={2} />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 font-gothic">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed font-poppins max-w-xs">
-                    {service.description}
-                  </p>
                 </div>
               );
             })}
           </div>
 
-          {/* Learn More CTA */}
+          {/* Services Scroll - Mobile */}
+          <div
+            className="md:hidden overflow-x-auto -mx-6 px-6 mb-16"
+            ref={servicesRef}
+          >
+            <div className="flex gap-6 pb-4" style={{ width: "max-content" }}>
+              {services.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <div key={service.id} className="w-80 flex-shrink-0">
+                    <div className="relative h-full bg-[#efe7df] rounded-2xl p-8 border border-[#d4c4b4]">
+                      <div
+                        className={`w-16 h-16 rounded-xl ${
+                          service.color === "orange"
+                            ? "bg-[#f86f17]"
+                            : "bg-blue-700"
+                        } flex items-center justify-center mb-6 shadow-lg`}
+                      >
+                        <Icon className="w-7 h-7 text-white" strokeWidth={2} />
+                      </div>
+
+                      <h3 className="text-xl font-semibold text-[#151412] mb-3">
+                        {service.title}
+                      </h3>
+
+                      <div
+                        className={`w-12 h-px ${
+                          service.color === "orange"
+                            ? "bg-[#f86f17]"
+                            : "bg-blue-700"
+                        } mb-4`}
+                      ></div>
+
+                      <p className="text-sm text-[#6e6a64] leading-relaxed mb-6">
+                        {service.description}
+                      </p>
+
+                      <div className="space-y-2">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <div
+                              className={`w-1 h-1 rounded-full ${
+                                service.color === "orange"
+                                  ? "bg-[#f86f17]"
+                                  : "bg-blue-700"
+                              } mt-2 flex-shrink-0`}
+                            ></div>
+                            <span className="text-xs text-[#6e6a64]">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* CTA Section */}
           <div className="text-center">
             <a
               href="/services"
-              className="group inline-flex items-center gap-3 bg-gradient-to-r from-[#f86f17] to-[#ff8c5a] text-white px-8 py-4 rounded-lg font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:shadow-xl hover:shadow-[#f86f17]/30 hover:scale-105 font-poppins"
+              className="inline-flex items-center gap-3 bg-blue-700 text-white px-8 py-4 rounded-full font-medium text-sm tracking-wide hover:bg-blue-800 transition-all shadow-lg shadow-blue-700/20 hover:shadow-xl hover:shadow-blue-700/30"
             >
               Explore Our Services
-              <ArrowRight
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                strokeWidth={2}
-              />
+              <ArrowRight className="w-5 h-5" strokeWidth={2} />
             </a>
           </div>
         </div>
       </section>
 
-      {/* Bottom Transition */}
-      <div className="relative h-12 bg-gradient-to-b from-gray-200 to-white">
+      {/* Bottom separator */}
+      <div className="relative h-px bg-[#efe7df]">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2">
-          <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#f86f17]/40"></div>
-          <div className="w-2 h-2 rounded-full bg-[#f86f17]/40"></div>
-          <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-[#f86f17]/40"></div>
+          <div className="w-12 h-px bg-blue-700/20"></div>
+          <div className="w-2 h-2 rounded-full bg-blue-700"></div>
+          <div className="w-12 h-px bg-blue-700/20"></div>
         </div>
       </div>
     </div>

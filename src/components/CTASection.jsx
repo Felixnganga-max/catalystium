@@ -1,159 +1,259 @@
-import React from "react";
-import {
-  Calendar,
-  ArrowRight,
-  Target,
-  TrendingUp,
-  CheckCircle2,
-} from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { ArrowRight, Mail, Phone, Sparkles, Zap } from "lucide-react";
 
 export default function CTASection() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const isMobile =
+    typeof window !== "undefined" ? window.innerWidth < 768 : false;
+
   return (
-    <div className="relative backdrop-blur-lg bg-white/60 overflow-hidden font-poppins">
-      {/* Subtle Background Shapes */}
-      <div className="absolute top-40 right-20 w-96 h-96 rounded-full bg-blue-300 opacity-30 blur-3xl"></div>
-      <div className="absolute bottom-20 left-16 w-80 h-80 bg-orange-500 opacity-15 blur-3xl"></div>
+    <div className="relative -mt-20 bg-white overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large animated circles */}
+        <div
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full border-2 border-blue-700/10"
+          style={{
+            transform: !isMobile
+              ? `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.015}px) rotate(45deg)`
+              : "rotate(45deg)",
+            transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full border border-[#f86f17]/10"
+          style={{
+            transform: !isMobile
+              ? `translate(${mousePos.x * -0.015}px, ${mousePos.y * 0.02}px) rotate(-30deg)`
+              : "rotate(-30deg)",
+            transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        ></div>
 
-      {/* Orange Accent Shape */}
-      <div className="absolute top-20 left-12 w-56 h-40 bg-orange-500 opacity-10 rounded-3xl transform -rotate-6 hidden lg:block"></div>
+        {/* Floating squares */}
+        <div
+          className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-blue-700/10"
+          style={{
+            transform: !isMobile
+              ? `rotate(${mousePos.x * 0.05}deg)`
+              : "rotate(15deg)",
+            transition: "transform 0.3s ease-out",
+          }}
+        ></div>
+        <div
+          className="absolute bottom-1/3 right-1/3 w-24 h-24 border border-[#f86f17]/10"
+          style={{
+            transform: !isMobile
+              ? `rotate(${mousePos.y * -0.05}deg)`
+              : "rotate(-20deg)",
+            transition: "transform 0.3s ease-out",
+          }}
+        ></div>
 
-      {/* Blue Accent Shape with subtle text */}
-      <div className="absolute bottom-32 right-16 w-64 h-48 bg-blue-400 opacity-10 rounded-3xl transform rotate-12 hidden lg:block"></div>
+        {/* Small accent dots */}
+        <div className="absolute top-20 left-20 w-3 h-3 rounded-full bg-blue-700/20"></div>
+        <div className="absolute top-40 right-32 w-2 h-2 rounded-full bg-[#f86f17]/30"></div>
+        <div className="absolute bottom-32 left-1/3 w-4 h-4 rounded-full bg-blue-700/15"></div>
+        <div className="absolute bottom-20 right-20 w-3 h-3 rounded-full bg-[#f86f17]/20"></div>
+
+        {/* Gradient glow effects */}
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-700/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-[#f86f17]/5 rounded-full blur-3xl"></div>
+      </div>
 
       {/* Main Section */}
-      <section className="py-24 px-6 md:px-12 relative">
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Main CTA Card */}
-          <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
-            {/* Top accent line */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-500"></div>
-
-            <div className="p-10 md:p-16 text-center">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-5 py-2 rounded-full mb-6">
-                <span className="text-xs font-semibold text-orange-600 tracking-wider uppercase font-poppins">
-                  Start Your Journey
-                </span>
-              </div>
-
-              {/* Main Heading */}
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight font-gothic">
-                Ready to Strengthen{" "}
-                <span className="text-orange-500">Leadership & Execution</span>?
-              </h2>
-
-              {/* Description */}
-              <div className="max-w-3xl mx-auto mb-10">
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 font-poppins">
-                  Our coaching is a strategic partnership, not a one-off
-                  conversation. We work with leaders and organizations ready to
-                  invest in growth and embed lasting change.
-                </p>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed font-poppins">
-                  If this describes you or your team, let's discuss how we can
-                  help.
-                </p>
-              </div>
-
-              {/* Value Props */}
-              <div className="max-w-3xl mx-auto mb-10">
-                <div className="grid md:grid-cols-3 gap-4">
-                  {[
-                    { icon: Target, text: "Strategic Partnership" },
-                    { icon: TrendingUp, text: "Measurable Results" },
-                    { icon: CheckCircle2, text: "Lasting Change" },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl border border-gray-200"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-orange-500 flex items-center justify-center flex-shrink-0">
-                        <item.icon
-                          className="w-5 h-5 text-white"
-                          strokeWidth={2}
-                        />
-                      </div>
-                      <span className="text-sm font-semibold text-gray-900 font-poppins">
-                        {item.text}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <div className="mb-6">
-                <a
-                  href="https://calendly.com/catalystium"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-4 rounded-xl font-bold text-base tracking-wide uppercase transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/50 shadow-lg font-poppins"
-                >
-                  <Calendar className="w-5 h-5" strokeWidth={2.5} />
-                  <span>Book Your Discovery Call</span>
-                  <ArrowRight
-                    className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300"
-                    strokeWidth={2.5}
-                  />
-                </a>
-              </div>
-
-              {/* Trust Indicator */}
-              <div className="flex items-center justify-center gap-2 text-gray-600">
-                <CheckCircle2
-                  className="w-4 h-4 text-orange-500"
-                  strokeWidth={2.5}
-                />
-                <span className="text-sm font-medium font-poppins">
-                  Free 30-minute discovery session • No obligation
-                </span>
-              </div>
+      <section className="py-32 md:py-40 px-6 md:px-12 relative">
+        <div className="max-w-5xl mx-auto relative z-10">
+          {/* Floating badge */}
+          <div
+            className="text-center mb-12"
+            style={{
+              animation: "floatBadge 3s ease-in-out infinite",
+            }}
+          >
+            <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full border border-blue-700/20 shadow-lg">
+              <Sparkles className="w-4 h-4 text-[#f86f17]" strokeWidth={2} />
+              <span className="text-xs font-medium text-[#6e6a64] tracking-wider">
+                Let's Connect
+              </span>
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-700 animate-pulse"></div>
             </div>
           </div>
 
-          {/* Supporting Info Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {[
-              {
-                icon: Calendar,
-                title: "Discovery Call",
-                description:
-                  "Schedule a complimentary 30-minute session to explore your needs",
-              },
-              {
-                icon: Target,
-                title: "Custom Strategy",
-                description:
-                  "We design a coaching approach tailored to your specific goals",
-              },
-              {
-                icon: TrendingUp,
-                title: "Track Progress",
-                description:
-                  "Monitor real outcomes with our MEL framework throughout",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl border border-gray-300 p-6 hover:border-orange-400 hover:shadow-lg transition-all duration-300"
+          {/* Main heading with stagger animation */}
+          <div className="text-center mb-16">
+            <h2
+              className="text-5xl md:text-7xl font-light text-[#151412] mb-6 tracking-tight leading-tight"
+              style={{ animation: "fadeInUp 0.8s ease-out" }}
+            >
+              <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#f86f17]">
+                Reach
+              </span>{" "}
+              Us
+            </h2>
+
+            <div
+              className="flex items-center justify-center gap-4 mb-6"
+              style={{ animation: "fadeInUp 0.8s ease-out 0.2s backwards" }}
+            >
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-blue-700/30 to-transparent"></div>
+              <Zap className="w-5 h-5 text-[#f86f17]" strokeWidth={1.5} />
+              <div className="w-24 h-px bg-gradient-to-l from-transparent via-blue-700/30 to-transparent"></div>
+            </div>
+
+            <p
+              className="text-base text-[#6e6a64] max-w-xl mx-auto"
+              style={{ animation: "fadeInUp 0.8s ease-out 0.4s backwards" }}
+            >
+              Ready to transform your leadership? Get in touch with us today
+            </p>
+          </div>
+
+          {/* Contact Cards with hover effects */}
+          <div className="max-w-3xl mx-auto space-y-4 mb-16">
+            {/* Email Card */}
+            <div
+              className="group relative"
+              style={{ animation: "slideInLeft 0.8s ease-out 0.5s backwards" }}
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-700/20 to-blue-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg"></div>
+
+              <a
+                href="mailto:info@catalystiumsolutions.com"
+                className="relative flex items-center gap-6 bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-blue-700/30 transition-all duration-500 hover:scale-[1.02]"
               >
-                <div className="w-11 h-11 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center mb-4">
-                  <item.icon
-                    className="w-6 h-6 text-gray-700"
-                    strokeWidth={2}
-                  />
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-xl bg-blue-700 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                    <Mail className="w-7 h-7 text-white" strokeWidth={2} />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#f86f17] opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
                 </div>
-                <h3 className="text-base font-bold text-gray-900 mb-2 font-gothic">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed font-poppins">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+
+                <div className="flex-1 text-left">
+                  <div className="text-xs text-[#6e6a64] mb-2 font-medium tracking-wider">
+                    EMAIL US
+                  </div>
+                  <div className="text-lg font-semibold text-[#151412] group-hover:text-blue-700 transition-colors duration-300">
+                    info@catalystiumsolutions.com
+                  </div>
+                </div>
+
+                <ArrowRight
+                  className="w-6 h-6 text-blue-700 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500"
+                  strokeWidth={2}
+                />
+              </a>
+            </div>
+
+            {/* Phone Card */}
+            <div
+              className="group relative"
+              style={{ animation: "slideInRight 0.8s ease-out 0.6s backwards" }}
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#f86f17]/20 to-[#ff8c5a]/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg"></div>
+
+              <a
+                href="tel:+254712345678"
+                className="relative flex items-center gap-6 bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-[#f86f17]/30 transition-all duration-500 hover:scale-[1.02]"
+              >
+                <div className="relative">
+                  <div className="w-16 h-16 rounded-xl bg-[#f86f17] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                    <Phone className="w-7 h-7 text-white" strokeWidth={2} />
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                </div>
+
+                <div className="flex-1 text-left">
+                  <div className="text-xs text-[#6e6a64] mb-2 font-medium tracking-wider">
+                    CALL US
+                  </div>
+                  <div className="text-lg font-semibold text-[#151412] group-hover:text-[#f86f17] transition-colors duration-300">
+                    +254 712 345 678
+                  </div>
+                </div>
+
+                <ArrowRight
+                  className="w-6 h-6 text-[#f86f17] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500"
+                  strokeWidth={2}
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div
+            className="text-center"
+            style={{ animation: "fadeInUp 0.8s ease-out 0.7s backwards" }}
+          >
+            <a
+              href="/contact"
+              className="group inline-flex items-center gap-3 bg-blue-700 text-white px-10 py-5 rounded-full font-semibold text-sm tracking-wide hover:bg-blue-800 transition-all duration-300 shadow-2xl shadow-blue-700/30 hover:shadow-blue-700/50 hover:scale-105"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <span>Get In Touch</span>
+              <ArrowRight
+                className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300"
+                strokeWidth={2}
+              />
+            </a>
           </div>
         </div>
       </section>
+
+      <style>{`
+        @keyframes floatBadge {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }

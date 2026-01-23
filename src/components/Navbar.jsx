@@ -15,8 +15,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-3 md:pt-4">
-      <div className="max-w-[1800px] mx-auto">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-2 md:px-8 pt-3 md:pt-4">
+      <div className="w-full mx-auto">
         <div
           className={`relative backdrop-blur-2xl bg-gradient-to-r from-white/80 via-white/70 to-white/80 border border-white/40 rounded-2xl shadow-2xl transition-all duration-500 ${
             scrolled ? "shadow-orange-500/10" : ""

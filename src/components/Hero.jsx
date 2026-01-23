@@ -5,7 +5,7 @@ import heroLocal from "../images/file.png";
 export default function Hero({ imageUrl = heroLocal }) {
   return (
     <>
-      <section className="min-h-screen bg-gradient-to-r from-gray-300 via-gray-100 to-white flex items-center justify-center p-2 relative overflow-hidden pt-28">
+      <section className="min-h-screen bg-gradient-to-r from-gray-300 via-gray-100 to-white flex items-center justify-center p-2 relative overflow-hidden pt-28 -mt-4">
         {/* Ambient background effects */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-10 w-96 h-96 bg-gray-400 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
@@ -111,21 +111,21 @@ export default function Hero({ imageUrl = heroLocal }) {
                 {/* LEFT PANEL (Second on mobile) */}
                 <div className="lg:w-1/2 p-6 md:p-10 lg:p-16 z-30 relative order-2 lg:order-1">
                   {/* Micro label */}
-                  <div className="text-xs tracking-widest text-[#f86f17] mb-4 uppercase font-bold text-center md:text-left">
+                  <div className="text-xs tracking-widest text-[#f86f17]/80 mb-4 uppercase font-bold text-center md:text-left">
                     coaching / execution / results
                   </div>
 
                   {/* Elegant Headline */}
                   <h1 className="text-2xl md:text-3xl lg:text-4xl leading-tight text-gray-900 mb-5 font-bold text-center md:text-left">
                     <span className="block">Sparking Change</span>
-                    <span className="block bg-[#f86f17] bg-clip-text text-transparent">
+                    <span className="block bg-[#f86f17]/80 bg-clip-text text-transparent">
                       Igniting
                     </span>
                     <span className="block">Transformation</span>
                   </h1>
 
                   {/* Subtle decorative line */}
-                  <div className="w-24 h-1 bg-[#f86f17] rounded-full mb-8 mx-auto md:mx-0"></div>
+                  <div className="w-24 h-1 bg-[#f86f17]/80 rounded-full mb-8 mx-auto md:mx-0"></div>
 
                   {/* Description */}
                   <p className="text-gray-600 font-poppins font-light max-w-lg mb-8 leading-relaxed text-center md:text-left mx-auto md:mx-0">

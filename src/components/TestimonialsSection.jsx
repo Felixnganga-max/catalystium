@@ -1,230 +1,424 @@
-import React, { useState, useEffect } from "react";
-import { Star } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { Star, Quote, Award, Sparkles } from "lucide-react";
 
 export default function TestimonialsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const carouselRef = useRef(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const handleScroll = () => setScrollY(window.scrollY);
+    const handleMouseMove = (e) => {
+      if (carouselRef.current) {
+        const rect = carouselRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        });
+      }
     };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
   }, []);
 
-  const allTestimonials = [
+  const isMobile =
+    typeof window !== "undefined" ? window.innerWidth < 768 : false;
+
+  const testimonials = [
     {
       name: "Sarah Mitchell",
       title: "CEO, TechVentures Inc.",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
       quote:
         "Working with Catalystium transformed how our leadership team operates. The coaching wasn't just insightful—it was actionable.",
+      color: "blue",
     },
     {
       name: "Marcus Rodriguez",
       title: "Founder, Innovation Capital",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
       quote:
         "The C.A.T.A.L.Y.S.T™ framework gave us the structure we needed to turn vision into reality. Our team is more aligned than ever.",
+      color: "orange",
     },
     {
       name: "Jennifer Chen",
       title: "COO, Global Health Alliance",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
       quote:
         "Catalystium didn't just coach us—they equipped us with tools to sustain high performance. Our organizational capacity has grown exponentially.",
-    },
-    {
-      name: "David Okonkwo",
-      title: "Executive Director, ADI",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-      quote:
-        "The leadership development program was transformative. Our emerging leaders are now driving change with confidence and clarity.",
-    },
-    {
-      name: "Lisa Thompson",
-      title: "VP Strategy, GlobalTech",
-      image:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
-      quote:
-        "The measurable impact on our team's performance exceeded all expectations. This is coaching that delivers real, tangible results.",
-    },
-    {
-      name: "Ahmed Hassan",
-      title: "Managing Director, Apex Group",
-      image:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
-      quote:
-        "Catalystium's approach to leadership coaching is unlike anything we've experienced. Strategic, practical, and deeply transformative.",
+      color: "blue",
     },
   ];
-
-  const desktopSlides = [
-    allTestimonials.slice(0, 3),
-    allTestimonials.slice(3, 6),
-  ];
-
-  const slides = isMobile ? allTestimonials.map((t) => [t]) : desktopSlides;
-  const totalSlides = slides.length;
 
   const handleDotClick = (index) => {
     if (!isAnimating && index !== currentSlide) {
       setIsAnimating(true);
       setCurrentSlide(index);
-      setTimeout(() => setIsAnimating(false), 600);
-    }
-  };
-
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e) => {
-    setTouchEnd(0);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe && currentSlide < totalSlides - 1) {
-      handleDotClick(currentSlide + 1);
-    }
-    if (isRightSwipe && currentSlide > 0) {
-      handleDotClick(currentSlide - 1);
+      setTimeout(() => setIsAnimating(false), 700);
     }
   };
 
   useEffect(() => {
-    setCurrentSlide(0);
-  }, [isMobile]);
+    const interval = setInterval(() => {
+      if (!isAnimating) {
+        setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isAnimating, testimonials.length]);
 
   return (
-    <div className="relative backdrop-blur-md bg-white/60 overflow-hidden font-poppins">
-      {/* Decorative Background Shapes */}
-      <div className="absolute top-20 right-12 w-96 h-96 rounded-full bg-blue-300 opacity-40 blur-3xl"></div>
-      <div className="absolute bottom-40 left-16 w-80 h-80 bg-orange-500 opacity-20 blur-3xl"></div>
+    <div className="relative bg-white overflow-hidden" ref={carouselRef}>
+      {/* Floating geometric shapes */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Large circles */}
+        <div
+          className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-blue-700/10"
+          style={{
+            transform: !isMobile
+              ? `translate(${mousePos.x * 0.02}px, ${mousePos.y * 0.02}px)`
+              : "none",
+            transition: "transform 0.3s ease-out",
+          }}
+        ></div>
+        <div
+          className="absolute top-1/2 -left-40 w-80 h-80 rounded-full border-2 border-[#f86f17]/10"
+          style={{
+            transform: !isMobile
+              ? `translate(${mousePos.x * -0.015}px, ${mousePos.y * 0.015}px) rotate(${scrollY * 0.1}deg)`
+              : "none",
+            transition: "transform 0.3s ease-out",
+          }}
+        ></div>
 
-      {/* Orange Accent Shape with Text */}
-      <div className="absolute top-1/3 left-8 w-64 h-48 bg-orange-500 opacity-15 rounded-3xl transform -rotate-12 hidden lg:block"></div>
-      <div className="absolute top-1/3 left-8 w-64 h-48 flex items-center justify-center transform -rotate-12 hidden lg:block">
-        <span className="text-white text-6xl font-bold opacity-20 font-gothic">
-          500+
-        </span>
+        {/* Squares */}
+        <div
+          className="absolute top-20 right-1/4 w-24 h-24 border border-blue-700/10 rotate-45"
+          style={{
+            transform: !isMobile
+              ? `rotate(${45 + scrollY * 0.05}deg) translate(${mousePos.x * 0.03}px, ${mousePos.y * 0.03}px)`
+              : "rotate(45deg)",
+            transition: "transform 0.3s ease-out",
+          }}
+        ></div>
+        <div
+          className="absolute bottom-32 left-1/3 w-16 h-16 border-2 border-[#f86f17]/10 rotate-12"
+          style={{
+            transform: !isMobile
+              ? `rotate(${12 + scrollY * -0.05}deg)`
+              : "rotate(12deg)",
+            transition: "transform 0.3s ease-out",
+          }}
+        ></div>
+
+        {/* Small accent circles */}
+        <div className="absolute top-40 left-20 w-4 h-4 rounded-full bg-blue-700/20"></div>
+        <div className="absolute bottom-40 right-32 w-3 h-3 rounded-full bg-[#f86f17]/20"></div>
+        <div className="absolute top-1/3 right-16 w-2 h-2 rounded-full bg-blue-700/30"></div>
       </div>
 
-      {/* Blue Accent Shape */}
-      <div className="absolute bottom-20 right-20 w-72 h-56 bg-blue-400 opacity-10 rounded-3xl transform rotate-6 hidden lg:block"></div>
-
       {/* Main Section */}
-      <section className="py-20 px-6 md:px-12 relative">
+      <section className="py-24 md:py-32 px-6 md:px-12 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold text-orange-600 tracking-wider uppercase mb-3 font-poppins">
-              Our Clients
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 font-gothic">
-              Reviews
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 bg-[#efe7df] px-5 py-2 rounded-full mb-6 border border-blue-700/10">
+              <Award className="w-4 h-4 text-blue-700" strokeWidth={2} />
+              <span className="text-xs font-medium text-[#6e6a64] tracking-wider">
+                Client Success Stories
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-light text-[#151412] mb-4 tracking-tight">
+              Trusted by{" "}
+              <span className="font-semibold text-blue-700">Leaders</span>
             </h2>
+
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-20 h-px bg-blue-700/20"></div>
+              <Sparkles className="w-4 h-4 text-[#f86f17]" strokeWidth={1.5} />
+              <div className="w-20 h-px bg-blue-700/20"></div>
+            </div>
+
+            <p className="text-base text-[#6e6a64] max-w-2xl mx-auto">
+              Hear from executives and leaders who transformed their
+              organizations
+            </p>
           </div>
 
-          {/* Testimonials Carousel */}
-          <div
-            className="relative min-h-[520px] md:min-h-[520px]"
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-            {slides.map((slideGroup, slideIndex) => (
-              <div
-                key={slideIndex}
-                className={`absolute inset-0 transition-all duration-600 ${
-                  slideIndex === currentSlide
-                    ? "opacity-100 pointer-events-auto"
-                    : "opacity-0 pointer-events-none"
-                }`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {slideGroup.map((testimonial, index) => (
+          {/* Desktop: Animated Cards Grid */}
+          <div className="hidden md:block">
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {testimonials.slice(0, 3).map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="group relative"
+                  style={{
+                    animation: `fadeInUp 0.8s ease-out ${index * 0.15}s backwards`,
+                  }}
+                >
+                  {/* Animated border */}
+                  <div
+                    className={`absolute -inset-1 rounded-2xl ${
+                      testimonial.color === "blue"
+                        ? "bg-blue-700/20"
+                        : "bg-[#f86f17]/20"
+                    } opacity-0 group-hover:opacity-100 transition-all duration-700 blur-xl`}
+                  ></div>
+
+                  <div className="relative bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-blue-700/30 transition-all duration-500 h-full flex flex-col">
+                    {/* Quote icon */}
                     <div
-                      key={index}
-                      className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                      className={`w-12 h-12 rounded-xl ${
+                        testimonial.color === "blue"
+                          ? "bg-blue-700"
+                          : "bg-[#f86f17]"
+                      } flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
                     >
-                      {/* Stars */}
-                      <div className="flex gap-1 mb-6">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="w-5 h-5 text-amber-400 fill-amber-400"
-                          />
-                        ))}
-                      </div>
+                      <Quote className="w-6 h-6 text-white" strokeWidth={2} />
+                    </div>
 
-                      {/* Quote */}
-                      <blockquote className="mb-8">
-                        <p className="text-gray-700 leading-relaxed text-sm font-poppins">
-                          "{testimonial.quote}"
-                        </p>
-                      </blockquote>
+                    {/* Stars */}
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-[#f86f17] fill-[#f86f17]"
+                          style={{
+                            animation: `starPop 0.3s ease-out ${i * 0.1}s backwards`,
+                          }}
+                        />
+                      ))}
+                    </div>
 
-                      {/* Author Info */}
-                      <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
-                        <div className="w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
-                          <img
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                            className="w-full h-full object-cover"
-                          />
+                    {/* Quote */}
+                    <blockquote className="flex-1 mb-6">
+                      <p className="text-sm text-[#6e6a64] leading-relaxed">
+                        "{testimonial.quote}"
+                      </p>
+                    </blockquote>
+
+                    {/* Author */}
+                    <div className="pt-6 border-t border-[#efe7df]">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-12 h-12 rounded-full ${
+                            testimonial.color === "blue"
+                              ? "bg-blue-700/10"
+                              : "bg-[#f86f17]/10"
+                          } flex items-center justify-center flex-shrink-0`}
+                        >
+                          <span
+                            className={`text-lg font-semibold ${
+                              testimonial.color === "blue"
+                                ? "text-blue-700"
+                                : "text-[#f86f17]"
+                            }`}
+                          >
+                            {testimonial.name.charAt(0)}
+                          </span>
                         </div>
                         <div>
-                          <h4 className="text-base font-bold text-gray-900 font-gothic">
+                          <h4 className="text-sm font-semibold text-[#151412]">
                             {testimonial.name}
                           </h4>
-                          <p className="text-xs text-gray-600 font-poppins">
+                          <p className="text-xs text-[#6e6a64]">
                             {testimonial.title}
                           </p>
                         </div>
                       </div>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.slice(3, 6).map((testimonial, index) => (
+                <div
+                  key={index + 3}
+                  className="group relative"
+                  style={{
+                    animation: `fadeInUp 0.8s ease-out ${(index + 3) * 0.15}s backwards`,
+                  }}
+                >
+                  <div
+                    className={`absolute -inset-1 rounded-2xl ${
+                      testimonial.color === "blue"
+                        ? "bg-blue-700/20"
+                        : "bg-[#f86f17]/20"
+                    } opacity-0 group-hover:opacity-100 transition-all duration-700 blur-xl`}
+                  ></div>
+
+                  <div className="relative bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-blue-700/30 transition-all duration-500 h-full flex flex-col">
+                    <div
+                      className={`w-12 h-12 rounded-xl ${
+                        testimonial.color === "blue"
+                          ? "bg-blue-700"
+                          : "bg-[#f86f17]"
+                      } flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+                    >
+                      <Quote className="w-6 h-6 text-white" strokeWidth={2} />
+                    </div>
+
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-[#f86f17] fill-[#f86f17]"
+                          style={{
+                            animation: `starPop 0.3s ease-out ${i * 0.1}s backwards`,
+                          }}
+                        />
+                      ))}
+                    </div>
+
+                    <blockquote className="flex-1 mb-6">
+                      <p className="text-sm text-[#6e6a64] leading-relaxed">
+                        "{testimonial.quote}"
+                      </p>
+                    </blockquote>
+
+                    <div className="pt-6 border-t border-[#efe7df]">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-12 h-12 rounded-full ${
+                            testimonial.color === "blue"
+                              ? "bg-blue-700/10"
+                              : "bg-[#f86f17]/10"
+                          } flex items-center justify-center flex-shrink-0`}
+                        >
+                          <span
+                            className={`text-lg font-semibold ${
+                              testimonial.color === "blue"
+                                ? "text-blue-700"
+                                : "text-[#f86f17]"
+                            }`}
+                          >
+                            {testimonial.name.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-[#151412]">
+                            {testimonial.name}
+                          </h4>
+                          <p className="text-xs text-[#6e6a64]">
+                            {testimonial.title}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleDotClick(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide
-                    ? "bg-orange-500 w-8"
-                    : "bg-orange-300 hover:bg-orange-400"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
+          {/* Mobile: Horizontal Scroll */}
+          <div className="md:hidden overflow-x-auto -mx-6 px-6 scrollbar-hide">
+            <div className="flex gap-6 pb-4" style={{ width: "max-content" }}>
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="w-80 flex-shrink-0">
+                  <div className="relative bg-white rounded-2xl p-8 border border-[#efe7df] h-full flex flex-col shadow-lg">
+                    <div
+                      className={`w-12 h-12 rounded-xl ${
+                        testimonial.color === "blue"
+                          ? "bg-blue-700"
+                          : "bg-[#f86f17]"
+                      } flex items-center justify-center mb-6`}
+                    >
+                      <Quote className="w-6 h-6 text-white" strokeWidth={2} />
+                    </div>
+
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 text-[#f86f17] fill-[#f86f17]"
+                        />
+                      ))}
+                    </div>
+
+                    <blockquote className="flex-1 mb-6">
+                      <p className="text-sm text-[#6e6a64] leading-relaxed">
+                        "{testimonial.quote}"
+                      </p>
+                    </blockquote>
+
+                    <div className="pt-6 border-t border-[#efe7df]">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`w-12 h-12 rounded-full ${
+                            testimonial.color === "blue"
+                              ? "bg-blue-700/10"
+                              : "bg-[#f86f17]/10"
+                          } flex items-center justify-center flex-shrink-0`}
+                        >
+                          <span
+                            className={`text-lg font-semibold ${
+                              testimonial.color === "blue"
+                                ? "text-blue-700"
+                                : "text-[#f86f17]"
+                            }`}
+                          >
+                            {testimonial.name.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-[#151412]">
+                            {testimonial.name}
+                          </h4>
+                          <p className="text-xs text-[#6e6a64]">
+                            {testimonial.title}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes starPop {
+          0% {
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+          }
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }
