@@ -10,16 +10,15 @@ import {
   Sparkles,
   ChevronDown,
 } from "lucide-react";
+import six from "../images/six.jpg";
+import nine from "../images/nine.jpg";
+import eight from "../images/eight.jpg";
 
 export default function ServicesPage() {
   const [email, setEmail] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const heroImages = [
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200",
-    "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200",
-    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200",
-  ];
+  const heroImages = [eight, nine, six];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -132,7 +131,7 @@ export default function ServicesPage() {
           {heroImages.map((img, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
+              className={`absolute top-0 bottom-0 inset-0 transition-opacity duration-1000 ${
                 currentSlide === index ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -144,12 +143,7 @@ export default function ServicesPage() {
 
         {/* Hero Content */}
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
-          <p className="text-xl md:text-2xl text-white/90 font-light max-w-3xl mb-12">
-            Coaching, strategy, and insights that build exceptional leaders and
-            high-performing organizations
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap mt-70 items-center justify-center gap-4">
             <a
               href="#services"
               className="px-8 py-4 bg-gradient-to-r from-[#f86f17] to-[#ff8c5a] text-white rounded-full font-semibold uppercase text-sm tracking-wider hover:scale-105 transition-transform shadow-2xl"
@@ -179,11 +173,6 @@ export default function ServicesPage() {
               />
             ))}
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-8 h-8 text-white" />
         </div>
       </section>
 
@@ -587,7 +576,7 @@ export default function ServicesPage() {
                     href="mailto:hello@leadership.com"
                     className="text-lg hover:text-[#f86f17] transition-colors"
                   >
-                    hello@leadership.com
+                    info@catalystiumsolutions.com
                   </a>
                 </div>
                 <p className="text-white/80 leading-relaxed">

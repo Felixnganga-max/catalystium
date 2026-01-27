@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
+import BlogsPage from "./pages/Blogs";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blogs" element={<BlogsPage />} />
       </Routes>
       <Footer />
     </>

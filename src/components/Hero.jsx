@@ -8,12 +8,12 @@ export default function Hero({ imageUrl = heroLocal }) {
       <section className="min-h-screen bg-[#efe7df] flex items-center justify-center p-2 relative overflow-hidden pt-28 -mt-4">
         {/* Ambient background effects with brand colors */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-[#f86f17] rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+          <div className="absolute top-20 left-10 w-96 h-96 bg-[#f86f17] rounded-xs mix-blend-multiply filter blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-700"></div>
         </div>
 
         <div className="w-full max-w-[1600px] relative z-10">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl">
             <div className="backdrop-blur-md bg-white/70 rounded-3xl border border-white/30">
               <div className="flex flex-col lg:flex-row relative min-h-[600px]">
                 {/* RIGHT PANEL - CREATIVE DESIGN (First on mobile) */}
