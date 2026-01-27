@@ -122,6 +122,7 @@ export default function Navbar() {
                 {[
                   { name: "Home", path: "/" },
                   { name: "Services", path: "/services" },
+                  { name: "Blogs", path: "/blogs" },
                   { name: "About", path: "/about" },
                   { name: "Contact", path: "/contact" },
                 ].map((item, idx) => (
