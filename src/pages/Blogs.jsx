@@ -284,7 +284,7 @@ export default function BlogsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f5f0eb] to-[#efe7df] text-[#151412]">
       {/* Page Header */}
-      <div className="max-w-7xl mt-18 mx-auto px-6 md:px-8 py-16">
+      <div className="max-w-7xl md:mt-18 mx-auto px-6 md:px-8 py-16">
         <div className="flex items-center justify-between mb-8">
           <div>
             <div className="text-sm text-[#6e6a64] mb-3 font-medium">
