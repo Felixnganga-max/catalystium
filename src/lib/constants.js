@@ -6,7 +6,7 @@ const blogsData = {
         "The Power of 1:1 Executive Coaching: Why Personalized Growth Matters",
       slug: "power-of-one-on-one-executive-coaching",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
@@ -266,7 +266,7 @@ const blogsData = {
         "Evidence-Based Coaching: Why Methodology Matters in Leadership Development",
       slug: "evidence-based-coaching-methodology",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
@@ -440,7 +440,7 @@ const blogsData = {
         "Emotional Intelligence in Leadership: The Hidden Competitive Advantage",
       slug: "emotional-intelligence-leadership-advantage",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Wa",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",

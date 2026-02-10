@@ -9,6 +9,7 @@ import {
   Mail,
   Sparkles,
   ChevronDown,
+  Heart,
 } from "lucide-react";
 import six from "../images/six.jpg";
 import nine from "../images/nine.jpg";
@@ -35,7 +36,7 @@ export default function ServicesPage() {
   const services = [
     {
       id: "coaching",
-      title: "EXECUTIVE COACHING",
+      title: " COACHING",
       subtitle: "Transform Leadership Through Personalized Growth",
       icon: Target,
       color: "orange",
@@ -57,6 +58,18 @@ export default function ServicesPage() {
             "Structured coaching for teams and leadership cohorts to strengthen alignment and execution.",
           bestFor:
             "Leadership teams, cross-functional groups, emerging leaders",
+        },
+        {
+          icon: Heart, // or Compass, Star, Sunrise - choose based on your icon library
+          title: "Life Coaching",
+          description:
+            "Personal coaching for individuals seeking clarity, purpose, and fulfillment across all dimensions of life.",
+          focus:
+            "Work-life integration, personal values alignment, relationship dynamics, life transitions, meaningful goals",
+          outcomes:
+            "Greater self-awareness, intentional living, balanced priorities, renewed energy",
+          bestFor:
+            "Professionals at crossroads, career transitions, personal growth seekers, life redesign",
         },
       ],
       cta: {

@@ -57,7 +57,7 @@ export default function SectionOne() {
             <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full mb-8 shadow-sm border border-blue-700/10">
               <Lightbulb className="w-4 h-4 text-blue-700" strokeWidth={2} />
               <span className="text-xs text-[#6e6a64] tracking-wider font-medium">
-                Leadership Excellence
+                Coaching Excellence
               </span>
               <div className="w-1 h-1 rounded-full bg-blue-700"></div>
             </div>
@@ -67,7 +67,7 @@ export default function SectionOne() {
               Sustainable Performance
               <br />
               <span className="font-semibold text-blue-700">
-                Through Leadership
+                Through Coaching
               </span>
             </h1>
 
@@ -89,7 +89,7 @@ export default function SectionOne() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#services"
+                href="/services"
                 className="group inline-flex items-center gap-2 bg-blue-700 text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-blue-800 transition-all shadow-lg shadow-blue-700/20 hover:shadow-xl hover:shadow-blue-700/30"
               >
                 <Target className="w-4 h-4" strokeWidth={2} />
@@ -101,7 +101,7 @@ export default function SectionOne() {
               </a>
 
               <a
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center gap-2 bg-white text-blue-700 px-8 py-3 rounded-full text-sm font-medium border border-blue-700/20 hover:bg-[#efe7df] transition-all"
               >
                 Get Started

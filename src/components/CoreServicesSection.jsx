@@ -35,9 +35,9 @@ export default function CoreServicesSection() {
         "Executive and leadership coaching that builds clarity, confidence, and sustained performance.",
       color: "orange",
       features: [
-        "1:1 Executive Coaching",
-        "Group Coaching",
-        "Leadership Development",
+        "1.1 Executive Coaching",
+        "1.2 Group Coaching",
+        "1.3 Life Coaching",
       ],
     },
     {
