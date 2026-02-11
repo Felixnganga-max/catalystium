@@ -11,7 +11,7 @@ export default function TestimonialsSection() {
       name: "Muthomi B Mwiti",
       title: "Royal Gather Inc",
       quote:
-        "Partnering with Coach Essy to deliver the Master Class on Planning was a deeply enriching experience for the Royal Gather Inc. community. She brought a rare blend of warmth, empathy, and practical insight that created a safe and engaging learning environment for our participants.",
+        "Partnering with Coach Essy to deliver the Master Class on Planning was a deeply enriching experience for the Royal Gather Inc. community. She brought a rare blend of warmth, empathy, and practical insight that created a safe and engaging learning environment for our participants. Her facilitation was both inspiring and highly actionable, helping our members gain clarity, structure their goals, and approach planning with confidence and purpose. The impact of her session was evident in the feedback we received, with many describing it as timely, transformative, and empowering. Coach Essy is a gifted personal coach and trainer whose relational approach and depth of content leave a lasting impression.",
       image: muthomi,
     },
   ];
