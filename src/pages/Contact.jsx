@@ -25,7 +25,7 @@ export default function CatalystiumContact() {
   });
 
   const companyEmail = "info@catalystiumsolutions.com";
-  const companyPhone = "+254712541271";
+  const companyPhone = "+254 740 600 150";
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -58,7 +58,7 @@ I look forward to connecting with you.
 
 Best regards,
 ${form.firstName} ${form.lastName}
-    `.trim()
+    `.trim(),
     );
 
     // Open email client
@@ -179,7 +179,7 @@ ${form.firstName} ${form.lastName}
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                placeholder="+254 712 541 271"
+                placeholder="+254 740 600 150"
                 className="flex-1 text-sm focus:outline-none"
               />
             </div>

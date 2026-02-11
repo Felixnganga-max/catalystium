@@ -202,7 +202,7 @@ export default function Footer() {
                   <Phone size={16} className="text-white" />
                 </div>
                 <span className="text-[#6e6a64] leading-relaxed">
-                  +254 712 345 678
+                  +254 740 600 150
                 </span>
               </li>
             </ul>

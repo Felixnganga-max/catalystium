@@ -163,7 +163,7 @@ export default function CTASection() {
               <div className="absolute -inset-1 bg-gradient-to-r from-[#f86f17]/20 to-[#ff8c5a]/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg"></div>
 
               <a
-                href="tel:+254712345678"
+                href="tel:+2547740600150"
                 className="relative flex items-center gap-6 bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-[#f86f17]/30 transition-all duration-500 hover:scale-[1.02]"
               >
                 <div className="relative">
@@ -178,7 +178,7 @@ export default function CTASection() {
                     CALL US
                   </div>
                   <div className="text-lg font-semibold text-[#151412] group-hover:text-[#f86f17] transition-colors duration-300">
-                    +254 712 345 678
+                    +254 740600150
                   </div>
                 </div>
 
