@@ -52,7 +52,7 @@ export default function TestimonialsSection() {
   }, [isAnimating, testimonials.length, currentSlide]);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 overflow-hidden py-20 px-4 md:px-8">
+    <div className="relative mb-20 min-h-screen bg-gradient-to-br from-orange-50 via-orange-100 to-orange-200 overflow-hidden py-20 px-4 md:px-8">
       {/* Gradient Overlay Effects */}
       <div className="absolute inset-0 bg-gradient-to-tr from-orange-400/20 via-transparent to-orange-300/20 pointer-events-none"></div>
 
