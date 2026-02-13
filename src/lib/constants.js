@@ -440,7 +440,7 @@ const blogsData = {
         "Emotional Intelligence in Leadership: The Hidden Competitive Advantage",
       slug: "emotional-intelligence-leadership-advantage",
       author: {
-        name: "Esther Wa",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
