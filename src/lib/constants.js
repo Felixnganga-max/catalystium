@@ -136,7 +136,7 @@ const blogsData = {
         "Group Coaching: Amplifying Team Performance Through Collective Growth",
       slug: "group-coaching-team-performance",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
@@ -581,7 +581,7 @@ const blogsData = {
       title: "Navigating Organizational Change: A Coach's Guide for Leaders",
       slug: "navigating-organizational-change-coaching-guide",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
@@ -722,7 +722,7 @@ const blogsData = {
       title: "The Art of Powerful Questioning: How Coaches Transform Thinking",
       slug: "art-of-powerful-questioning-coaching",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
@@ -871,7 +871,7 @@ const blogsData = {
       title: "Building High-Performance Teams: Beyond Skills to Culture",
       slug: "building-high-performance-teams-culture",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
@@ -1029,7 +1029,7 @@ const blogsData = {
         "The Leader as Coach: Developing Your Team Through Coaching Conversations",
       slug: "leader-as-coach-developing-team",
       author: {
-        name: "Esther Wanjiru",
+        name: "Esther Mburu",
         role: "Lead Executive Coach",
         avatar:
           "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400",
