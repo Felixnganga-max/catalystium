@@ -138,59 +138,9 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-[#efe7df] text-[#151412]">
       {/* Immersive Hero Section with Sliding Images */}
-      <section className="relative h-screen overflow-hidden">
-        {/* Sliding Background Images */}
-        <div className="absolute inset-0">
-          {heroImages.map((img, index) => (
-            <div
-              key={index}
-              className={`absolute top-0 bottom-0 inset-0 transition-opacity duration-1000 ${
-                currentSlide === index ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img src={img} alt="" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#151412]/95" />
-            </div>
-          ))}
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
-          <div className="flex flex-wrap mt-70 items-center justify-center gap-4">
-            <a
-              href="#services"
-              className="px-8 py-4 bg-gradient-to-r from-[#f86f17] to-[#ff8c5a] text-white rounded-full font-semibold uppercase text-sm tracking-wider hover:scale-105 transition-transform shadow-2xl"
-            >
-              Explore Services
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-full font-semibold uppercase text-sm tracking-wider hover:bg-white/20 transition-all border border-white/20"
-            >
-              Get Started
-            </a>
-          </div>
-
-          {/* Slide Indicators */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-2">
-            {heroImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentSlide === index
-                    ? "w-8 bg-[#f86f17]"
-                    : "bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Approach Section */}
-      <section className="py-20 bg-gradient-to-b from-[#efe7df] to-white">
+      {/* <section className="py-20 bg-gradient-to-b from-[#efe7df] to-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-5xl md:text-7xl font-extralight uppercase tracking-tight mb-6">
@@ -243,7 +193,7 @@ export default function ServicesPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Section */}
       <main id="services" className="py-20 bg-[#efe7df]">

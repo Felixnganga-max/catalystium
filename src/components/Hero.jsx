@@ -1,8 +1,16 @@
 import React from "react";
 import { Facebook, Twitter, Instagram, Phone, Sparkles } from "lucide-react";
 import heroLocal from "../images/file.png";
+import { useCalendly } from "../hooks/useCalendly";
 
 export default function Hero({ imageUrl = heroLocal }) {
+  const { openPopup, loading, error } = useCalendly();
+
+  const handleLearnMore = () => {
+    // No URL needed — hook auto-fetches from /users/me
+    openPopup();
+  };
+
   return (
     <>
       <section className="min-h-screen bg-[#efe7df] flex items-center justify-center p-2 relative overflow-hidden pt-28 -mt-4">
@@ -91,12 +99,9 @@ export default function Hero({ imageUrl = heroLocal }) {
                   <div className="absolute inset-0 flex items-center justify-center p-8 lg:p-16">
                     <div
                       className="relative w-full h-full rounded-3xl overflow-hidden shadow-xl transform transition-transform duration-700 hover:scale-105"
-                      style={{
-                        clipPath: "circle(50% at 50% 50%)",
-                      }}
+                      style={{ clipPath: "circle(50% at 50% 50%)" }}
                     >
                       <div className="absolute inset-0 bg-[#f86f17]/10"></div>
-
                       {imageUrl && (
                         <img
                           src={imageUrl}
@@ -139,15 +144,26 @@ export default function Hero({ imageUrl = heroLocal }) {
 
                   {/* CTAs - BRANDED BUTTONS */}
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-10">
-                    <button className="group relative overflow-hidden bg-[#f86f17] text-white px-10 py-4 rounded-full text-base font-bold shadow-xl transform transition hover:scale-105 hover:shadow-2xl">
-                      <span className="relative z-10">Learn More</span>
+                    {/* Learn More → opens Calendly popup */}
+                    <button
+                      onClick={handleLearnMore}
+                      disabled={loading}
+                      className="group relative overflow-hidden bg-[#f86f17] text-white px-10 py-4 rounded-full text-base font-bold shadow-xl transform transition hover:scale-105 hover:shadow-2xl disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    >
+                      <span className="relative z-10">
+                        {loading ? "Loading..." : "Learn More"}
+                      </span>
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </button>
 
-                    <button className="flex items-center gap-2 border-2 border-[#f86f17] text-[#f86f17] px-8 py-4 rounded-full text-base font-bold hover:bg-[#f86f17] hover:text-white transition-all">
+                    {/* Contact Now → navigates to /contact */}
+                    <a
+                      href="/contact"
+                      className="flex items-center gap-2 border-2 border-[#f86f17] text-[#f86f17] px-8 py-4 rounded-full text-base font-bold hover:bg-[#f86f17] hover:text-white transition-all"
+                    >
                       <Phone size={18} />
                       Contact Now
-                    </button>
+                    </a>
                   </div>
 
                   {/* Footer row: social + email - BRANDED COLORS */}
@@ -176,22 +192,12 @@ export default function Hero({ imageUrl = heroLocal }) {
 
         <style>{`
           @keyframes spin-slow {
-            from {
-              transform: rotate(0deg);
-            }
-            to {
-              transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
           }
-          .animate-spin-slow {
-            animation: spin-slow 10s linear infinite;
-          }
-          .delay-500 {
-            animation-delay: 0.5s;
-          }
-          .delay-700 {
-            animation-delay: 0.7s;
-          }
+          .animate-spin-slow { animation: spin-slow 10s linear infinite; }
+          .delay-500 { animation-delay: 0.5s; }
+          .delay-700 { animation-delay: 0.7s; }
         `}</style>
       </section>
     </>

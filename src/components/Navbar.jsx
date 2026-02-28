@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import logo from "../images/catalystium.png";
+import { useCalendly } from "../hooks/useCalendly";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openPopup, loading: calendlyLoading } = useCalendly();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +15,11 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleBooking = () => {
+    openPopup();
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-2 md:px-8 pt-3 md:pt-4">
@@ -55,9 +62,7 @@ export default function Navbar() {
                     className="relative px-4 py-1.5 text-sm font-medium text-gray-700 hover:text-orange-600 transition-all duration-300 group"
                   >
                     <span className="relative z-10">{item.name}</span>
-                    {/* Hover background effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-orange-400/5 to-amber-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100"></div>
-                    {/* Bottom accent line */}
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 group-hover:w-4/5 transition-all duration-300 rounded-full shadow-lg shadow-orange-500/50"></div>
                   </a>
                 ))}
@@ -65,28 +70,36 @@ export default function Navbar() {
 
               {/* Right side buttons */}
               <div className="flex items-center space-x-3">
-                {/* Ultra premium CTA button */}
-                <a
-                  href="/contact"
-                  className="hidden md:flex items-center gap-2 group relative overflow-hidden bg-gradient-to-r from-orange-500 via-[#f86f17] to-orange-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-2xl shadow-orange-500/40 transform transition-all duration-500 hover:scale-105 hover:shadow-orange-500/60 hover:-translate-y-0.5"
+                {/* Desktop CTA — opens Calendly popup */}
+                <button
+                  onClick={handleBooking}
+                  disabled={calendlyLoading}
+                  className="hidden md:flex items-center gap-2 group relative overflow-hidden bg-gradient-to-r from-orange-500 via-[#f86f17] to-orange-600 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-2xl shadow-orange-500/40 transform transition-all duration-500 hover:scale-105 hover:shadow-orange-500/60 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0"
                 >
-                  {/* Animated shimmer effect */}
+                  {/* Shimmer */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-
                   {/* Rotating gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/30 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
 
-                  {/* Button content */}
                   <span className="relative z-10 flex items-center gap-2 font-poppins tracking-wide">
-                    <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                    Connect with Esther
+                    {calendlyLoading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Setting up...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                        Connect with Esther
+                      </>
+                    )}
                   </span>
 
                   {/* Outer glow ring */}
                   <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-amber-500 opacity-0 group-hover:opacity-30 blur-lg transition-all duration-500"></div>
-                </a>
+                </button>
 
-                {/* Premium mobile hamburger */}
+                {/* Mobile hamburger */}
                 <button
                   className="md:hidden relative p-2 text-gray-700 hover:text-orange-600 z-50 rounded-xl hover:bg-gradient-to-br hover:from-orange-50 hover:to-amber-50 transition-all duration-300 group"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -104,13 +117,12 @@ export default function Navbar() {
                       />
                     )}
                   </div>
-                  {/* Subtle glow on hover */}
                   <div className="absolute inset-0 rounded-xl bg-orange-500/10 opacity-0 group-hover:opacity-100 blur transition-opacity duration-300"></div>
                 </button>
               </div>
             </div>
 
-            {/* Premium Mobile Menu Dropdown */}
+            {/* Mobile Menu */}
             <div
               className={`md:hidden overflow-hidden transition-all duration-500 ease-out ${
                 isMobileMenuOpen
@@ -138,41 +150,51 @@ export default function Navbar() {
                     }}
                   >
                     <div className="flex items-center gap-3 px-4 py-3 relative z-10">
-                      {/* Animated dot indicator */}
                       <div className="w-1 h-1 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 group-hover:scale-150 transition-all duration-300"></div>
                       <span className="text-gray-700 group-hover:text-orange-600 font-medium transition-all duration-300 group-hover:translate-x-1">
                         {item.name}
                       </span>
                     </div>
-                    {/* Gradient background slide */}
                     <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-orange-400/5 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 rounded-xl"></div>
-                    {/* Accent line */}
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-8 bg-gradient-to-r from-orange-500 to-transparent group-hover:w-1 transition-all duration-300 rounded-r"></div>
                   </a>
                 ))}
 
-                {/* Mobile CTA with premium styling */}
-                <a
-                  href="/contact"
-                  className="w-full mt-4 group relative overflow-hidden bg-gradient-to-r from-orange-500 via-[#f86f17] to-orange-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-xl shadow-orange-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/50 flex items-center justify-center"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                {/* Mobile CTA — opens Calendly popup */}
+                <button
+                  onClick={handleBooking}
+                  disabled={calendlyLoading}
+                  className="w-full mt-4 group relative overflow-hidden bg-gradient-to-r from-orange-500 via-[#f86f17] to-orange-600 text-white px-6 py-3 rounded-2xl text-sm font-semibold shadow-xl shadow-orange-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/50 flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed"
+                  style={{
+                    animation: isMobileMenuOpen
+                      ? `slideIn 0.3s ease-out ${5 * 0.05}s both`
+                      : "none",
+                  }}
                 >
-                  {/* Animated shimmer */}
+                  {/* Shimmer */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
                   <span className="relative z-10 flex items-center justify-center gap-2 font-poppins">
-                    <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                    Connect with Esther
+                    {calendlyLoading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Setting up...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                        Connect with Esther
+                      </>
+                    )}
                   </span>
 
-                  {/* Inner glow */}
                   <div className="absolute inset-0.5 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </a>
+                </button>
               </div>
             </div>
           </div>
 
-          {/* Bottom premium border accent */}
+          {/* Bottom accent */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
         </div>
       </div>
