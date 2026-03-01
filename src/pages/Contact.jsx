@@ -22,7 +22,7 @@ export default function Contact() {
       icon: Phone,
       title: "CALL US",
       body: "Prefer to speak directly? We're available Monday through Friday, 9am – 6pm EAT.",
-      detail: "+254 700 000 000",
+      detail: "+254 740 600 150",
       href: "tel:+254700000000",
       action: null,
       actionLabel: null,
