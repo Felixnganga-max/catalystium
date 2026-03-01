@@ -14,10 +14,12 @@ import {
 import six from "../images/six.jpg";
 import nine from "../images/nine.jpg";
 import eight from "../images/eight.jpg";
+import { useCalendly } from "../hooks/useCalendly";
 
 export default function ServicesPage() {
   const [email, setEmail] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { openPopup } = useCalendly();
 
   const heroImages = [eight, nine, six];
 
@@ -31,6 +33,17 @@ export default function ServicesPage() {
   const handleSubscribe = () => {
     console.log("Subscribed:", email);
     setEmail("");
+  };
+
+  // ── CTA handlers ────────────────────────────────────────────────────────────
+  const handleDiscoveryCall = (e) => {
+    e.preventDefault();
+    openPopup();
+  };
+
+  const handleSpeakingBooking = (e) => {
+    e.preventDefault();
+    openPopup();
   };
 
   const services = [
@@ -60,7 +73,7 @@ export default function ServicesPage() {
             "Leadership teams, cross-functional groups, emerging leaders",
         },
         {
-          icon: Heart, // or Compass, Star, Sunrise - choose based on your icon library
+          icon: Heart,
           title: "Life Coaching",
           description:
             "Personal coaching for individuals seeking clarity, purpose, and fulfillment across all dimensions of life.",
@@ -75,7 +88,7 @@ export default function ServicesPage() {
       cta: {
         text: "Book Discovery Call",
         icon: Calendar,
-        link: "#calendly",
+        handler: "discovery",
       },
     },
     {
@@ -103,9 +116,9 @@ export default function ServicesPage() {
         },
       ],
       cta: {
-        text: "Explore Solutions",
-        icon: TrendingUp,
-        link: "#organizational-solutions",
+        text: "Book Discovery Call",
+        icon: Calendar,
+        handler: "discovery",
       },
     },
     {
@@ -128,73 +141,21 @@ export default function ServicesPage() {
         "Improved team alignment",
       ],
       cta: {
-        text: "Book Speaking",
+        text: "Book Speaking Engagement",
         icon: Mail,
-        link: "#contact",
+        handler: "speaking",
       },
     },
   ];
 
+  // Map handler keys to functions
+  const ctaHandlers = {
+    discovery: handleDiscoveryCall,
+    speaking: handleSpeakingBooking,
+  };
+
   return (
     <div className="min-h-screen bg-[#efe7df] text-[#151412]">
-      {/* Immersive Hero Section with Sliding Images */}
-
-      {/* Approach Section */}
-      {/* <section className="py-20 bg-gradient-to-b from-[#efe7df] to-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-extralight uppercase tracking-tight mb-6">
-              Our <span className="text-[#f86f17]">Approach</span>
-            </h2>
-            <p className="text-xl text-[#6e6a64] max-w-3xl mx-auto">
-              Evidence-based methods combined with collaborative processes to
-              deliver sustainable results
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-t-4 border-[#f86f17]">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#f86f17] to-[#ff8c5a] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Target className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 uppercase tracking-wide">
-                Evidence-Based
-              </h3>
-              <p className="text-[#6e6a64] leading-relaxed">
-                Grounded in research and proven methodologies that drive
-                measurable leadership transformation and organizational success.
-              </p>
-            </div>
-
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-t-4 border-blue-700">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-700 to-blue-900 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 uppercase tracking-wide">
-                Collaborative
-              </h3>
-              <p className="text-[#6e6a64] leading-relaxed">
-                Partnership-driven approach that honors your expertise while
-                bringing fresh perspectives and strategic insights.
-              </p>
-            </div>
-
-            <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-t-4 border-[#f86f17]">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#f86f17] to-[#ff8c5a] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold mb-4 uppercase tracking-wide">
-                Sustainable
-              </h3>
-              <p className="text-[#6e6a64] leading-relaxed">
-                Long-term impact through embedded systems and practices that
-                continue delivering value long after our engagement.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> */}
-
       {/* Services Section */}
       <main id="services" className="py-20 bg-[#efe7df]">
         <div className="max-w-7xl mx-auto px-6">
@@ -227,7 +188,7 @@ export default function ServicesPage() {
                         : "border-blue-700/20 hover:border-blue-700/40"
                     }`}
                   >
-                    {/* Decorative Background Element */}
+                    {/* Decorative Background */}
                     <div
                       className={`absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl opacity-10 ${
                         service.color === "orange"
@@ -248,17 +209,16 @@ export default function ServicesPage() {
                         >
                           <Icon className="w-10 h-10 text-white" />
                         </div>
-
                         <div className="flex-1">
                           <h4 className="text-3xl font-bold mb-2 uppercase tracking-tight">
                             {service.title}
                           </h4>
                           <p
-                            className={`text-sm uppercase tracking-widest ${
+                            className={`text-sm uppercase tracking-widest font-semibold ${
                               service.color === "orange"
                                 ? "text-[#f86f17]"
                                 : "text-blue-700"
-                            } font-semibold`}
+                            }`}
                           >
                             {service.subtitle}
                           </p>
@@ -278,14 +238,12 @@ export default function ServicesPage() {
                                 <div className="w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br from-[#f86f17] to-[#ff8c5a] mb-4 shadow-md">
                                   <OffIcon className="w-6 h-6 text-white" />
                                 </div>
-
                                 <h5 className="text-lg font-bold mb-2">
                                   {offering.title}
                                 </h5>
                                 <p className="text-sm text-[#6e6a64] mb-4 leading-relaxed">
                                   {offering.description}
                                 </p>
-
                                 {offering.focus && (
                                   <div className="mb-3">
                                     <p className="text-xs font-bold text-[#f86f17] uppercase tracking-wider mb-1">
@@ -296,7 +254,6 @@ export default function ServicesPage() {
                                     </p>
                                   </div>
                                 )}
-
                                 {offering.outcomes && (
                                   <div className="mb-3">
                                     <p className="text-xs font-bold text-[#f86f17] uppercase tracking-wider mb-1">
@@ -307,7 +264,6 @@ export default function ServicesPage() {
                                     </p>
                                   </div>
                                 )}
-
                                 {offering.bestFor && (
                                   <div>
                                     <p className="text-xs font-bold text-[#f86f17] uppercase tracking-wider mb-1">
@@ -368,7 +324,6 @@ export default function ServicesPage() {
                               ))}
                             </ul>
                           </div>
-
                           <div className="bg-white/80 backdrop-blur rounded-2xl p-6 border border-black/5 shadow-md">
                             <p className="text-xs font-bold text-[#f86f17] uppercase tracking-wider mb-4">
                               Outcomes
@@ -391,16 +346,16 @@ export default function ServicesPage() {
                         </div>
                       )}
 
-                      {/* CTA Button */}
+                      {/* ── CTA Button — now triggers Calendly popup ── */}
                       <div className="flex items-center gap-4">
-                        <a
-                          href={service.cta.link}
-                          className={`inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white shadow-xl bg-gradient-to-r ${service.gradient} hover:scale-105 transition-all`}
+                        <button
+                          onClick={ctaHandlers[service.cta.handler]}
+                          className={`inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white shadow-xl bg-gradient-to-r ${service.gradient} hover:scale-105 active:scale-95 transition-all`}
                         >
                           <service.cta.icon className="w-5 h-5" />
                           {service.cta.text}
                           <ArrowRight className="w-5 h-5" />
-                        </a>
+                        </button>
                       </div>
                     </div>
                   </article>
@@ -414,7 +369,6 @@ export default function ServicesPage() {
                 <h3 className="text-2xl font-bold uppercase tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#f86f17] to-blue-700">
                   Our Process
                 </h3>
-
                 <ol className="space-y-6">
                   {[
                     {
@@ -458,6 +412,15 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ol>
+
+                {/* Sidebar quick-book CTA */}
+                <button
+                  onClick={handleDiscoveryCall}
+                  className="mt-10 w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white shadow-xl bg-gradient-to-r from-[#f86f17] to-[#ff8c5a] hover:scale-105 active:scale-95 transition-all"
+                >
+                  <Calendar className="w-4 h-4" />
+                  Book a Discovery Call
+                </button>
               </div>
             </aside>
           </div>
@@ -470,7 +433,6 @@ export default function ServicesPage() {
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-700 rounded-full blur-3xl" />
         </div>
-
         <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase tracking-tight">
             Ready to Transform Your Leadership?
@@ -479,16 +441,16 @@ export default function ServicesPage() {
             Let's explore how we can partner to elevate your impact and drive
             sustainable organizational excellence
           </p>
-
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="#calendly"
-              className="px-10 py-5 bg-white text-[#f86f17] rounded-full font-bold uppercase text-sm tracking-wider hover:scale-105 transition-transform shadow-2xl"
+            {/* ── Opens Calendly popup ── */}
+            <button
+              onClick={handleDiscoveryCall}
+              className="px-10 py-5 bg-white text-[#f86f17] rounded-full font-bold uppercase text-sm tracking-wider hover:scale-105 active:scale-95 transition-transform shadow-2xl"
             >
               Schedule a Discovery Call
-            </a>
+            </button>
             <a
-              href="#contact"
+              href="/contact"
               className="px-10 py-5 bg-blue-700 text-white rounded-full font-bold uppercase text-sm tracking-wider hover:bg-blue-800 transition-all shadow-2xl"
             >
               Get In Touch
@@ -509,7 +471,6 @@ export default function ServicesPage() {
                 Receive insights on leadership development, organizational
                 strategy, and exclusive resources delivered to your inbox
               </p>
-
               <div className="flex gap-4">
                 <input
                   aria-label="Email"
@@ -536,7 +497,7 @@ export default function ServicesPage() {
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6" />
                   <a
-                    href="mailto:hello@leadership.com"
+                    href="mailto:info@catalystiumsolutions.com"
                     className="text-lg hover:text-[#f86f17] transition-colors"
                   >
                     info@catalystiumsolutions.com
