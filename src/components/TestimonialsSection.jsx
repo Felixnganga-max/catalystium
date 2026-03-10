@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import muthomi from "../images/muthomi.png";
+import sr from "../assets/sr.jpg";
+import mt from "../assets/mt.jpg";
 
 export default function TestimonialsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -13,6 +15,20 @@ export default function TestimonialsSection() {
       quote:
         "Partnering with Coach Essy to deliver the Master Class on Planning was a deeply enriching experience for the Royal Gather Inc. community. She brought a rare blend of warmth, empathy, and practical insight that created a safe and engaging learning environment for our participants. Her facilitation was both inspiring and highly actionable, helping our members gain clarity, structure their goals, and approach planning with confidence and purpose. The impact of her session was evident in the feedback we received, with many describing it as timely, transformative, and empowering. Coach Essy is a gifted personal coach and trainer whose relational approach and depth of content leave a lasting impression.",
       image: muthomi,
+    },
+    {
+      name: "Dr. Miriam",
+      title: "Mountain Balm Medical Centre",
+      quote:
+        "Coach Essy's sessions did something I didn't expect — they helped me see my medical practice not just as a clinical space, but as a living, breathing mission. I came in thinking I needed business strategy. What I received was a deeper understanding of myself as a leader, a healer, and a visionary. She helped me reconnect with why I started Mountain Balm in the first place, and from that clarity, everything else — our team culture, patient experience, and growth — began to align. Her coaching is an investment that goes far beyond the boardroom. It reaches the soul of your business.",
+      image: mt,
+    },
+    {
+      name: "Felix Ngunga",
+      title: "Developer - Serenly Digital Marketing",
+      quote:
+        "Before working with Coach Essy, I was running a digital agency on instinct and caffeine. Her coaching gave me structure, but more importantly, it gave me self-awareness. I understood for the first time how my own patterns, fears, and blind spots were shaping my business decisions. The planning masterclass was a turning point — I walked out with a roadmap for Serenely that was rooted in both strategy and purpose. Coach Essy has this extraordinary ability to hold space for your growth while also challenging you to think bigger. Our agency has not been the same since, and neither have I.",
+      image: sr,
     },
   ];
 
@@ -67,7 +83,7 @@ export default function TestimonialsSection() {
                   <img
                     src={testimonials[currentSlide].image}
                     alt={testimonials[currentSlide].name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-opacity duration-500"
                   />
                 </div>
               </div>
@@ -102,44 +118,42 @@ export default function TestimonialsSection() {
                 </p>
               </div>
 
-              {/* Navigation Dots & Arrows - Only show if multiple testimonials */}
-              {testimonials.length > 1 && (
-                <div className="flex items-center justify-center md:justify-start gap-6 pt-6">
-                  {/* Previous Button */}
-                  <button
-                    onClick={prevSlide}
-                    className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center hover:border-blue-600 hover:bg-blue-50 transition-all duration-300"
-                    aria-label="Previous testimonial"
-                  >
-                    <ChevronLeft className="w-5 h-5 text-gray-600" />
-                  </button>
+              {/* Navigation Dots & Arrows */}
+              <div className="flex items-center justify-center md:justify-start gap-6 pt-6">
+                {/* Previous Button */}
+                <button
+                  onClick={prevSlide}
+                  className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center hover:border-orange-400 hover:bg-orange-50 transition-all duration-300"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="w-5 h-5 text-gray-600" />
+                </button>
 
-                  {/* Dots */}
-                  <div className="flex gap-2">
-                    {testimonials.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => goToSlide(index)}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          index === currentSlide
-                            ? "w-8 bg-blue-600"
-                            : "w-2 bg-gray-300 hover:bg-gray-400"
-                        }`}
-                        aria-label={`Go to testimonial ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Next Button */}
-                  <button
-                    onClick={nextSlide}
-                    className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center hover:border-blue-600 hover:bg-blue-50 transition-all duration-300"
-                    aria-label="Next testimonial"
-                  >
-                    <ChevronRight className="w-5 h-5 text-gray-600" />
-                  </button>
+                {/* Dots */}
+                <div className="flex gap-2">
+                  {testimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentSlide
+                          ? "w-8 bg-orange-400"
+                          : "w-2 bg-gray-300 hover:bg-gray-400"
+                      }`}
+                      aria-label={`Go to testimonial ${index + 1}`}
+                    />
+                  ))}
                 </div>
-              )}
+
+                {/* Next Button */}
+                <button
+                  onClick={nextSlide}
+                  className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center hover:border-orange-400 hover:bg-orange-50 transition-all duration-300"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="w-5 h-5 text-gray-600" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
