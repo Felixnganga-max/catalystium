@@ -7,6 +7,7 @@ import TestimonialsSection from "../components/TestimonialsSection";
 import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Partners from "../components/Partner";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <CoreServicesSection />
       <TestimonialsSection />
       <CTASection />
+      <Partners />
     </div>
   );
 };

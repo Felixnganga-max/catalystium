@@ -17,7 +17,7 @@ export default function TestimonialsSection() {
       image: muthomi,
     },
     {
-      name: "Dr. Miriam",
+      name: "Dr. Mercy",
       title: "Mountain Balm Medical Centre",
       quote:
         "Coach Essy's sessions did something I didn't expect — they helped me see my medical practice not just as a clinical space, but as a living, breathing mission. I came in thinking I needed business strategy. What I received was a deeper understanding of myself as a leader, a healer, and a visionary. She helped me reconnect with why I started Mountain Balm in the first place, and from that clarity, everything else — our team culture, patient experience, and growth — began to align. Her coaching is an investment that goes far beyond the boardroom. It reaches the soul of your business.",

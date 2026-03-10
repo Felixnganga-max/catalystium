@@ -235,18 +235,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Image Section with One */}
-      <section className="max-w-7xl mx-auto px-6 mb-24">
-        <div className="relative rounded-3xl overflow-hidden shadow-xl h-[500px]">
-          <img
-            src={one}
-            alt="Leadership Development"
-            className="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
         <div className="bg-gradient-to-br from-[#f86f17] to-orange-500 rounded-3xl p-16 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">
