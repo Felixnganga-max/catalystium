@@ -20,7 +20,6 @@ export default function CTASection() {
     <div className="relative -mt-20 bg-white overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large animated circles */}
         <div
           className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full border-2 border-blue-700/10"
           style={{
@@ -39,8 +38,6 @@ export default function CTASection() {
             transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         ></div>
-
-        {/* Floating squares */}
         <div
           className="absolute top-1/4 left-1/4 w-32 h-32 border-2 border-blue-700/10"
           style={{
@@ -59,30 +56,27 @@ export default function CTASection() {
             transition: "transform 0.3s ease-out",
           }}
         ></div>
-
-        {/* Small accent dots */}
         <div className="absolute top-20 left-20 w-3 h-3 rounded-full bg-blue-700/20"></div>
         <div className="absolute top-40 right-32 w-2 h-2 rounded-full bg-[#f86f17]/30"></div>
         <div className="absolute bottom-32 left-1/3 w-4 h-4 rounded-full bg-blue-700/15"></div>
         <div className="absolute bottom-20 right-20 w-3 h-3 rounded-full bg-[#f86f17]/20"></div>
-
-        {/* Gradient glow effects */}
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-700/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-[#f86f17]/5 rounded-full blur-3xl"></div>
       </div>
 
       {/* Main Section */}
-      <section className="py-32 md:py-40 px-6 md:px-12 relative">
+      <section className="py-12 md:py-16 px-6 md:px-12 relative">
         <div className="max-w-5xl mx-auto relative z-10">
           {/* Floating badge */}
           <div
-            className="text-center mb-12"
-            style={{
-              animation: "floatBadge 3s ease-in-out infinite",
-            }}
+            className="text-center mb-5"
+            style={{ animation: "floatBadge 3s ease-in-out infinite" }}
           >
-            <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full border border-blue-700/20 shadow-lg">
-              <Sparkles className="w-4 h-4 text-[#f86f17]" strokeWidth={2} />
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full border border-blue-700/20 shadow-lg">
+              <Sparkles
+                className="w-3.5 h-3.5 text-[#f86f17]"
+                strokeWidth={2}
+              />
               <span className="text-xs font-medium text-[#6e6a64] tracking-wider">
                 Let's Connect
               </span>
@@ -90,10 +84,10 @@ export default function CTASection() {
             </div>
           </div>
 
-          {/* Main heading with stagger animation */}
-          <div className="text-center mb-16">
+          {/* Main heading */}
+          <div className="text-center mb-8">
             <h2
-              className="text-5xl md:text-7xl font-light text-[#151412] mb-6 tracking-tight leading-tight"
+              className="text-4xl md:text-6xl font-light text-[#151412] mb-3 tracking-tight leading-tight"
               style={{ animation: "fadeInUp 0.8s ease-out" }}
             >
               <span className="font-semibold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-[#f86f17]">
@@ -103,53 +97,50 @@ export default function CTASection() {
             </h2>
 
             <div
-              className="flex items-center justify-center gap-4 mb-6"
+              className="flex items-center justify-center gap-3 mb-3"
               style={{ animation: "fadeInUp 0.8s ease-out 0.2s backwards" }}
             >
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-blue-700/30 to-transparent"></div>
-              <Zap className="w-5 h-5 text-[#f86f17]" strokeWidth={1.5} />
-              <div className="w-24 h-px bg-gradient-to-l from-transparent via-blue-700/30 to-transparent"></div>
+              <div className="w-16 h-px bg-gradient-to-r from-transparent via-blue-700/30 to-transparent"></div>
+              <Zap className="w-4 h-4 text-[#f86f17]" strokeWidth={1.5} />
+              <div className="w-16 h-px bg-gradient-to-l from-transparent via-blue-700/30 to-transparent"></div>
             </div>
 
             <p
-              className="text-base text-[#6e6a64] max-w-xl mx-auto"
+              className="text-sm text-[#6e6a64] max-w-xl mx-auto"
               style={{ animation: "fadeInUp 0.8s ease-out 0.4s backwards" }}
             >
               Ready to transform your leadership? Get in touch with us today
             </p>
           </div>
 
-          {/* Contact Cards with hover effects */}
-          <div className="max-w-3xl mx-auto space-y-4 mb-16">
+          {/* Contact Cards */}
+          <div className="max-w-3xl mx-auto space-y-3 mb-8">
             {/* Email Card */}
             <div
               className="group relative"
               style={{ animation: "slideInLeft 0.8s ease-out 0.5s backwards" }}
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-700/20 to-blue-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg"></div>
-
               <a
                 href="mailto:info@catalystiumsolutions.com"
-                className="relative flex items-center gap-6 bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-blue-700/30 transition-all duration-500 hover:scale-[1.02]"
+                className="relative flex items-center gap-4 bg-white rounded-2xl p-5 border border-[#efe7df] group-hover:border-blue-700/30 transition-all duration-500 hover:scale-[1.02]"
               >
                 <div className="relative">
-                  <div className="w-16 h-16 rounded-xl bg-blue-700 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                    <Mail className="w-7 h-7 text-white" strokeWidth={2} />
+                  <div className="w-12 h-12 rounded-xl bg-blue-700 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                    <Mail className="w-5 h-5 text-white" strokeWidth={2} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#f86f17] opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#f86f17] opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
                 </div>
-
                 <div className="flex-1 text-left">
-                  <div className="text-xs text-[#6e6a64] mb-2 font-medium tracking-wider">
+                  <div className="text-xs text-[#6e6a64] mb-0.5 font-medium tracking-wider">
                     EMAIL US
                   </div>
-                  <div className="text-lg font-semibold text-[#151412] group-hover:text-blue-700 transition-colors duration-300">
+                  <div className="text-base font-semibold text-[#151412] group-hover:text-blue-700 transition-colors duration-300">
                     info@catalystiumsolutions.com
                   </div>
                 </div>
-
                 <ArrowRight
-                  className="w-6 h-6 text-blue-700 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500"
+                  className="w-5 h-5 text-blue-700 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500"
                   strokeWidth={2}
                 />
               </a>
@@ -161,29 +152,26 @@ export default function CTASection() {
               style={{ animation: "slideInRight 0.8s ease-out 0.6s backwards" }}
             >
               <div className="absolute -inset-1 bg-gradient-to-r from-[#f86f17]/20 to-[#ff8c5a]/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-lg"></div>
-
               <a
                 href="tel:+2547740600150"
-                className="relative flex items-center gap-6 bg-white rounded-2xl p-8 border border-[#efe7df] group-hover:border-[#f86f17]/30 transition-all duration-500 hover:scale-[1.02]"
+                className="relative flex items-center gap-4 bg-white rounded-2xl p-5 border border-[#efe7df] group-hover:border-[#f86f17]/30 transition-all duration-500 hover:scale-[1.02]"
               >
                 <div className="relative">
-                  <div className="w-16 h-16 rounded-xl bg-[#f86f17] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
-                    <Phone className="w-7 h-7 text-white" strokeWidth={2} />
+                  <div className="w-12 h-12 rounded-xl bg-[#f86f17] flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                    <Phone className="w-5 h-5 text-white" strokeWidth={2} />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
                 </div>
-
                 <div className="flex-1 text-left">
-                  <div className="text-xs text-[#6e6a64] mb-2 font-medium tracking-wider">
+                  <div className="text-xs text-[#6e6a64] mb-0.5 font-medium tracking-wider">
                     CALL US
                   </div>
-                  <div className="text-lg font-semibold text-[#151412] group-hover:text-[#f86f17] transition-colors duration-300">
+                  <div className="text-base font-semibold text-[#151412] group-hover:text-[#f86f17] transition-colors duration-300">
                     +254 740600150
                   </div>
                 </div>
-
                 <ArrowRight
-                  className="w-6 h-6 text-[#f86f17] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500"
+                  className="w-5 h-5 text-[#f86f17] opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-500"
                   strokeWidth={2}
                 />
               </a>
@@ -197,13 +185,13 @@ export default function CTASection() {
           >
             <a
               href="/contact"
-              className="group inline-flex items-center gap-3 bg-blue-700 text-white px-10 py-5 rounded-full font-semibold text-sm tracking-wide hover:bg-blue-800 transition-all duration-300 shadow-2xl shadow-blue-700/30 hover:shadow-blue-700/50 hover:scale-105"
+              className="group inline-flex items-center gap-3 bg-blue-700 text-white px-8 py-3.5 rounded-full font-semibold text-sm tracking-wide hover:bg-blue-800 transition-all duration-300 shadow-2xl shadow-blue-700/30 hover:shadow-blue-700/50 hover:scale-105"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
               <span>Get In Touch</span>
               <ArrowRight
-                className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300"
+                className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300"
                 strokeWidth={2}
               />
             </a>
@@ -213,45 +201,20 @@ export default function CTASection() {
 
       <style>{`
         @keyframes floatBadge {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
         }
-
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(-50px); }
+          to { opacity: 1; transform: translateX(0); }
         }
-
         @keyframes slideInRight {
-          from {
-            opacity: 0;
-            transform: translateX(50px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
         }
       `}</style>
     </div>

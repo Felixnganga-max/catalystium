@@ -48,8 +48,6 @@ export default function Navbar() {
     }
   };
 
-  const ctaLabel = isContactPage ? "Book a Call ↓" : "Connect with Esther";
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 px-2 md:px-8 pt-3 md:pt-4">
       <div className="w-full mx-auto">
@@ -103,11 +101,6 @@ export default function Navbar() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/30 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
-                  <span className="relative z-10 flex items-center gap-2 font-poppins tracking-wide">
-                    <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                    {ctaLabel}
-                  </span>
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-amber-500 opacity-0 group-hover:opacity-30 blur-lg transition-all duration-500" />
                 </button>
 
                 {/* Mobile hamburger */}
@@ -182,10 +175,7 @@ export default function Navbar() {
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                  <span className="relative z-10 flex items-center justify-center gap-2 font-poppins">
-                    <Sparkles className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
-                    {ctaLabel}
-                  </span>
+
                   <div className="absolute inset-0.5 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </button>
               </div>

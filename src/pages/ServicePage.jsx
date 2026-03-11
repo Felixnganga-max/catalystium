@@ -15,6 +15,7 @@ import six from "../images/six.jpg";
 import nine from "../images/nine.jpg";
 import eight from "../images/eight.jpg";
 import { useCalendly } from "../hooks/useCalendly";
+import Partners from "../components/Partner";
 
 export default function ServicesPage() {
   const [email, setEmail] = useState("");
@@ -85,11 +86,6 @@ export default function ServicesPage() {
             "Professionals at crossroads, career transitions, personal growth seekers, life redesign",
         },
       ],
-      cta: {
-        text: "Book Discovery Call",
-        icon: Calendar,
-        handler: "discovery",
-      },
     },
     {
       id: "organizational",
@@ -345,18 +341,6 @@ export default function ServicesPage() {
                           </div>
                         </div>
                       )}
-
-                      {/* ── CTA Button — now triggers Calendly popup ── */}
-                      <div className="flex items-center gap-4">
-                        <button
-                          onClick={ctaHandlers[service.cta.handler]}
-                          className={`inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white shadow-xl bg-gradient-to-r ${service.gradient} hover:scale-105 active:scale-95 transition-all`}
-                        >
-                          <service.cta.icon className="w-5 h-5" />
-                          {service.cta.text}
-                          <ArrowRight className="w-5 h-5" />
-                        </button>
-                      </div>
                     </div>
                   </article>
                 );
@@ -412,52 +396,13 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ol>
-
-                {/* Sidebar quick-book CTA */}
-                <button
-                  onClick={handleDiscoveryCall}
-                  className="mt-10 w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-bold uppercase tracking-wider text-white shadow-xl bg-gradient-to-r from-[#f86f17] to-[#ff8c5a] hover:scale-105 active:scale-95 transition-all"
-                >
-                  <Calendar className="w-4 h-4" />
-                  Book a Discovery Call
-                </button>
               </div>
             </aside>
           </div>
         </div>
       </main>
 
-      {/* Call-to-Action Section */}
-      <section className="py-24 bg-gradient-to-r from-[#f86f17] to-[#ff8c5a] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-700 rounded-full blur-3xl" />
-        </div>
-        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 uppercase tracking-tight">
-            Ready to Transform Your Leadership?
-          </h2>
-          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-            Let's explore how we can partner to elevate your impact and drive
-            sustainable organizational excellence
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {/* ── Opens Calendly popup ── */}
-            <button
-              onClick={handleDiscoveryCall}
-              className="px-10 py-5 bg-white text-[#f86f17] rounded-full font-bold uppercase text-sm tracking-wider hover:scale-105 active:scale-95 transition-transform shadow-2xl"
-            >
-              Schedule a Discovery Call
-            </button>
-            <a
-              href="/contact"
-              className="px-10 py-5 bg-blue-700 text-white rounded-full font-bold uppercase text-sm tracking-wider hover:bg-blue-800 transition-all shadow-2xl"
-            >
-              Get In Touch
-            </a>
-          </div>
-        </div>
-      </section>
+      <Partners />
 
       {/* Newsletter Section */}
       <section id="contact" className="py-20 bg-white">

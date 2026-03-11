@@ -10,31 +10,26 @@ const partners = [
     src: logo,
     name: "Nyota Njema Real Estate",
     url: "https://nyotanjema.com/",
-    desc: "Land Investment in Kenya",
   },
   {
     src: logo1,
-    name: "Kikwetu Sacco",
-    url: "https://kikwetusacco.com/",
-    desc: "Savings & Credit Cooperative",
+    name: "Royal Gather",
+    url: "https://www.royalgather.org/",
   },
   {
     src: logo2,
-    name: "Royal Gather",
-    url: "https://www.royalgather.org/",
-    desc: "Community Organisation",
+    name: "Kikwetu Sacco",
+    url: "https://kikwetusacco.com/",
   },
   {
     src: logo3,
     name: "Ann's Maths Club",
     url: "https://annsmathsclub.com/",
-    desc: "Mathematics Education",
   },
   {
     src: sr,
     name: "Serenly Digital Marketing Agency",
     url: "https://www.serenlydm.com/",
-    desc: "Digital Marketing & Growth",
   },
 ];
 
