@@ -17,7 +17,6 @@ const Home = () => {
       <CoreServicesSection />
       <TestimonialsSection />
       <CTASection />
-      <Partners />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.jpg";
 import logo3 from "../assets/logo3.jpg";
 import sr from "../assets/sr.jpg";
+import convent from "../assets/convent.png";
 
 const partners = [
   {
@@ -27,6 +28,11 @@ const partners = [
     url: "https://annsmathsclub.com/",
   },
   {
+    src: convent,
+    name: "Convent International Hotel",
+    url: "https://conventinternationalhotel.co.ke/",
+  },
+  {
     src: sr,
     name: "Serenly Digital Marketing Agency",
     url: "https://www.serenlydm.com/",
@@ -44,18 +50,6 @@ const Partners = () => {
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <p
-            style={{
-              fontSize: "11px",
-              textTransform: "uppercase",
-              letterSpacing: "0.25em",
-              color: "#a3a3a3",
-              fontWeight: 600,
-              marginBottom: "16px",
-            }}
-          >
-            Trusted Collaborations
-          </p>
           <h2
             style={{
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
@@ -64,7 +58,7 @@ const Partners = () => {
               lineHeight: 1.1,
             }}
           >
-            Our <span style={{ color: "#f86f17" }}>Partners</span>
+            Clients <span style={{ color: "#f86f17" }}>I Have Worked With</span>
           </h2>
           <p
             style={{
