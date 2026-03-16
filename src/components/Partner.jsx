@@ -5,6 +5,7 @@ import logo2 from "../assets/logo2.jpg";
 import logo3 from "../assets/logo3.jpg";
 import sr from "../assets/sr.jpg";
 import convent from "../assets/convent.png";
+import balm from "../assets/balm.jfif";
 
 const partners = [
   {
@@ -21,6 +22,11 @@ const partners = [
     src: logo2,
     name: "Kikwetu Sacco",
     url: "https://kikwetusacco.com/",
+  },
+  {
+    src: balm,
+    name: "Mountain Balm Medical Center",
+    // url: "https://kikwetusacco.com/",
   },
   {
     src: logo3,
