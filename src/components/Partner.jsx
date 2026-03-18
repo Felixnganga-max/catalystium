@@ -33,11 +33,7 @@ const partners = [
     name: "Ann's Maths Club",
     url: "https://annsmathsclub.com/",
   },
-  {
-    src: convent,
-    name: "Convent International Hotel",
-    url: "https://conventinternationalhotel.co.ke/",
-  },
+
   {
     src: sr,
     name: "Serenly Digital Marketing Agency",
