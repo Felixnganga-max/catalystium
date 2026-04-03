@@ -81,6 +81,84 @@ const slides = [
   },
 ];
 
+/* ── Reusable desktop image circle ── */
+function ImageCircle({ slides, current, mousePos, slide, size = 580 }) {
+  return (
+    <div
+      style={{
+        transform: `translate(${mousePos.x * 14}px, ${mousePos.y * 14}px)`,
+        transition: "transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
+        width: "100%",
+        maxWidth: size,
+        aspectRatio: "1",
+        position: "relative",
+      }}
+    >
+      <div
+        className="absolute rounded-full"
+        style={{
+          inset: -18,
+          border: "1.5px solid rgba(255,255,255,0.18)",
+          borderRadius: "50%",
+          animation: "spinSlow 18s linear infinite",
+        }}
+      />
+      <div
+        className="absolute rounded-full"
+        style={{
+          inset: -36,
+          border: "1px dashed rgba(255,255,255,0.1)",
+          borderRadius: "50%",
+          animation: "spinSlow 32s linear infinite reverse",
+        }}
+      />
+      <div
+        className="relative w-full h-full rounded-full overflow-hidden"
+        style={{
+          boxShadow: `0 30px 80px rgba(0,0,0,0.55), 0 0 0 3px rgba(255,255,255,0.22)`,
+          background: slide.panelBg,
+        }}
+      >
+        {slides.map((s, i) => (
+          <img
+            key={i}
+            src={typeof s.image === "string" ? s.image : s.image}
+            alt={s.imageAlt}
+            className="absolute inset-0 w-full h-full"
+            style={{
+              objectFit: "contain",
+              objectPosition: "center",
+              opacity: i === current ? 1 : 0,
+              transition: "opacity 0.9s ease",
+              transform: i === current ? "scale(1.03)" : "scale(1)",
+              animation: i === current ? "imgZoom 8s ease forwards" : "none",
+            }}
+          />
+        ))}
+      </div>
+      <div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap z-10"
+        style={{
+          background: "rgba(0,0,0,0.55)",
+          backdropFilter: "blur(12px)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          color: "rgba(255,255,255,0.9)",
+          fontSize: "0.68rem",
+          fontWeight: 600,
+          letterSpacing: "2px",
+          textTransform: "uppercase",
+          padding: "5px 14px",
+          borderRadius: 999,
+          animation: "slideUp 0.65s ease 0.55s both",
+        }}
+        key={`imgbadge-${current}`}
+      >
+        {slide.badge}
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const [current, setCurrent] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -150,13 +228,13 @@ export default function Hero() {
       }}
     >
       {/* ═══════════════════════════════════════
-          LEFT PANEL — text content
+          LEFT / MAIN PANEL — text content
       ═══════════════════════════════════════ */}
       <div
-        className="relative z-10 flex flex-col justify-between w-full lg:w-[55%] px-8 md:px-14 lg:px-20 py-10 pt-28"
+        className="relative z-10 flex flex-col justify-between w-full lg:w-[55%] px-8 md:px-14 lg:px-20 py-6 pt-20 lg:pt-28 lg:py-10 overflow-y-auto"
         style={{ flexShrink: 0 }}
       >
-        {/* Ambient glow that follows mouse on left side */}
+        {/* Ambient glow */}
         <div
           className="absolute pointer-events-none rounded-full"
           style={{
@@ -172,7 +250,7 @@ export default function Hero() {
           }}
         />
 
-        {/* Grain overlay on left panel */}
+        {/* Grain overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -182,6 +260,99 @@ export default function Hero() {
             backgroundSize: "180px",
           }}
         />
+
+        {/* ══════════════════════════════════
+            MOBILE IMAGE CIRCLE — lg:hidden
+            Sits right below the navbar area,
+            above the badge and headline.
+        ══════════════════════════════════ */}
+        <div
+          className="flex lg:hidden justify-center relative z-10 mb-5"
+          key={`mobile-img-${current}`}
+          style={{ animation: "slideUp 0.65s ease 0.05s both" }}
+        >
+          {/* Soft coloured glow behind circle */}
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              width: 240,
+              height: 240,
+              borderRadius: "50%",
+              background: slide.panelBg,
+              filter: "blur(32px)",
+              opacity: 0.45,
+              transition: "background 0.7s ease",
+              zIndex: 0,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Circle wrapper */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 1,
+              width: 190,
+              height: 190,
+              flexShrink: 0,
+            }}
+          >
+            {/* Spinning decorative rings */}
+            <div
+              style={{
+                position: "absolute",
+                inset: -12,
+                border: "1.5px solid rgba(0,0,0,0.1)",
+                borderRadius: "50%",
+                animation: "spinSlow 18s linear infinite",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: -24,
+                border: "1px dashed rgba(0,0,0,0.07)",
+                borderRadius: "50%",
+                animation: "spinSlow 32s linear infinite reverse",
+              }}
+            />
+
+            {/* The image circle itself */}
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                overflow: "hidden",
+                position: "relative",
+                boxShadow: `0 14px 48px rgba(0,0,0,0.28), 0 0 0 3px rgba(255,255,255,0.55)`,
+                background: slide.panelBg,
+                transition: "background 0.7s ease",
+              }}
+            >
+              {slides.map((s, i) => (
+                <img
+                  key={i}
+                  src={typeof s.image === "string" ? s.image : s.image}
+                  alt={s.imageAlt}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    objectPosition: "center",
+                    opacity: i === current ? 1 : 0,
+                    transition: "opacity 0.9s ease",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* TOP: badge */}
         <div
@@ -209,7 +380,7 @@ export default function Hero() {
               className="leading-[0.9] tracking-tight text-[#151412] mb-3"
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(3.2rem, 6.5vw, 6.5rem)",
+                fontSize: "clamp(2.6rem, 6.5vw, 6.5rem)",
                 fontWeight: 900,
                 textShadow: "0 4px 40px rgba(0,0,0,0.4)",
               }}
@@ -232,7 +403,7 @@ export default function Hero() {
           <div style={{ animation: "slideUp 0.65s ease 0.18s both" }}>
             <p
               className="text-[#6e6a64] font-light uppercase tracking-[0.18em] mb-4 mt-1"
-              style={{ fontSize: "clamp(0.75rem,1.2vw,1rem)" }}
+              style={{ fontSize: "clamp(0.7rem,1.2vw,1rem)" }}
             >
               — {slide.accent}
             </p>
@@ -245,7 +416,7 @@ export default function Hero() {
               height: 1,
               background: `linear-gradient(to right, ${slide.bg.from}, transparent)`,
               borderRadius: 99,
-              marginBottom: "1.4rem",
+              marginBottom: "1.2rem",
               animation: "expandWidth 0.8s ease 0.25s both",
               width: 0,
             }}
@@ -254,8 +425,8 @@ export default function Hero() {
           {/* Sub-copy */}
           <div style={{ animation: "slideUp 0.65s ease 0.3s both" }}>
             <p
-              className="text-[#6e6a64] font-light leading-relaxed mb-5 max-w-md"
-              style={{ fontSize: "clamp(0.88rem,1.3vw,1rem)" }}
+              className="text-[#6e6a64] font-light leading-relaxed mb-4 max-w-md"
+              style={{ fontSize: "clamp(0.82rem,1.3vw,1rem)" }}
             >
               {slide.sub}
             </p>
@@ -264,7 +435,7 @@ export default function Hero() {
           {/* Tags */}
           {slide.tags.length > 0 && (
             <div
-              className="flex flex-wrap gap-2 mb-7"
+              className="flex flex-wrap gap-2 mb-5"
               style={{ animation: "slideUp 0.65s ease 0.38s both" }}
             >
               {slide.tags.map((t, i) => (
@@ -320,7 +491,6 @@ export default function Hero() {
           className="relative z-10 flex items-end justify-between"
           style={{ animation: "slideUp 0.65s ease 0.5s both" }}
         >
-          {/* Arrows + dot pills */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => go(current - 1)}
@@ -361,7 +531,6 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Socials */}
           <div className="flex flex-col items-end gap-2">
             <div className="flex gap-2">
               {[Facebook, Twitter, Instagram].map((Icon, i) => (
@@ -383,19 +552,19 @@ export default function Hero() {
       </div>
 
       {/* ═══════════════════════════════════════
-          RIGHT PANEL — image + gradient bg
+          RIGHT PANEL — desktop only (lg+)
       ═══════════════════════════════════════ */}
       <div
         className="hidden lg:block relative flex-1 overflow-hidden"
         style={{ flexShrink: 0 }}
       >
-        {/* Gradient background — slides per color */}
+        {/* Gradient background */}
         <div
           className="absolute inset-0 z-0 transition-all duration-700"
           style={{ background: slide.panelBg }}
         />
 
-        {/* SVG organic wave mask on the left edge of the panel */}
+        {/* SVG organic wave mask */}
         <svg
           className="absolute inset-0 w-full h-full z-[1] pointer-events-none"
           viewBox="0 0 700 900"
@@ -408,7 +577,7 @@ export default function Hero() {
           />
         </svg>
 
-        {/* Subtle grid pattern on panel bg */}
+        {/* Subtle grid */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
@@ -424,84 +593,13 @@ export default function Hero() {
           className="absolute inset-0 z-[2] flex items-center justify-center"
           style={{ padding: "2rem 1.5rem 2rem 2.5rem" }}
         >
-          <div
-            style={{
-              transform: `translate(${mousePos.x * 14}px, ${mousePos.y * 14}px)`,
-              transition: "transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)",
-              width: "100%",
-              maxWidth: 580,
-              aspectRatio: "1",
-              position: "relative",
-            }}
-          >
-            {/* Decorative ring behind circle */}
-            <div
-              className="absolute rounded-full"
-              style={{
-                inset: -18,
-                border: "1.5px solid rgba(255,255,255,0.18)",
-                borderRadius: "50%",
-                animation: "spinSlow 18s linear infinite",
-              }}
-            />
-            <div
-              className="absolute rounded-full"
-              style={{
-                inset: -36,
-                border: "1px dashed rgba(255,255,255,0.1)",
-                borderRadius: "50%",
-                animation: "spinSlow 32s linear infinite reverse",
-              }}
-            />
-
-            {/* The actual image circle */}
-            <div
-              className="relative w-full h-full rounded-full overflow-hidden"
-              style={{
-                boxShadow: `0 30px 80px rgba(0,0,0,0.55), 0 0 0 3px rgba(255,255,255,0.22)`,
-                background: slide.panelBg,
-              }}
-            >
-              {slides.map((s, i) => (
-                <img
-                  key={i}
-                  src={typeof s.image === "string" ? s.image : s.image}
-                  alt={s.imageAlt}
-                  className="absolute inset-0 w-full h-full"
-                  style={{
-                    objectFit: "contain",
-                    objectPosition: "center",
-                    opacity: i === current ? 1 : 0,
-                    transition: "opacity 0.9s ease",
-                    transform: i === current ? "scale(1.03)" : "scale(1)",
-                    animation:
-                      i === current ? "imgZoom 8s ease forwards" : "none",
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Floating badge on the image */}
-            <div
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap z-10"
-              style={{
-                background: "rgba(0,0,0,0.55)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                color: "rgba(255,255,255,0.9)",
-                fontSize: "0.72rem",
-                fontWeight: 600,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                padding: "6px 18px",
-                borderRadius: 999,
-                animation: "slideUp 0.65s ease 0.55s both",
-              }}
-              key={`imgbadge-${current}`}
-            >
-              {slide.badge}
-            </div>
-          </div>
+          <ImageCircle
+            slides={slides}
+            current={current}
+            mousePos={mousePos}
+            slide={slide}
+            size={580}
+          />
         </div>
 
         {/* Right-side slide counter */}
