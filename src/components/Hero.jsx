@@ -64,7 +64,7 @@ const slides = [
     image: strategy,
     imageAlt: "Strategy",
     accentColor: NAVY,
-    panelBg: NAVY, // slide 3 → navy
+    panelBg: ORANGE, // slide 3 → navy
   },
   {
     badge: "Speaking & Insights",
@@ -81,7 +81,7 @@ const slides = [
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=90&fit=crop&crop=faces",
     imageAlt: "Speaking",
     accentColor: ORANGE,
-    panelBg: ORANGE, // slide 4 → orange
+    panelBg: NAVY, // slide 4 → orange
   },
 ];
 
