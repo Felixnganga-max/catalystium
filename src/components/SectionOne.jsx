@@ -20,50 +20,38 @@ export default function SectionOne() {
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const isVisible = rect.top < viewportHeight && rect.bottom > 0;
-        setIsInView(isVisible);
+        setIsInView(rect.top < window.innerHeight && rect.bottom > 0);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const isMobile =
-    typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
   return (
     <div className="relative bg-white" ref={containerRef}>
-      {/* HERO SECTION */}
-      <section className="relative min-h-screen">
+      {/* ── HERO SECTION ── */}
+      <section className="relative">
         <div className="absolute inset-0 bg-[#efe7df]">
-          {/* Subtle accent circles */}
-          <div className="absolute top-20 right-10 w-96 h-96 bg-blue-700/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#f86f17]/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 right-10 w-80 h-80 bg-blue-700/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-10 w-64 h-64 bg-[#f86f17]/5 rounded-full blur-3xl" />
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 md:px-12 py-24">
+        <div className="relative z-10 flex flex-col items-center justify-center px-6 md:px-12 py-12 md:py-16">
           <div className="max-w-5xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full mb-8 shadow-sm border border-blue-700/10">
+            <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full mb-5 shadow-sm border border-blue-700/10">
               <Lightbulb className="w-4 h-4 text-blue-700" strokeWidth={2} />
               <span className="text-xs text-[#6e6a64] tracking-wider font-medium">
                 Coaching Excellence
               </span>
-              <div className="w-1 h-1 rounded-full bg-blue-700"></div>
+              <div className="w-1 h-1 rounded-full bg-blue-700" />
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#151412] mb-6 tracking-tight leading-tight">
+            {/* Headline */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#151412] mb-4 tracking-tight leading-tight">
               Sustainable Performance
               <br />
               <span className="font-semibold text-blue-700">
@@ -72,21 +60,21 @@ export default function SectionOne() {
             </h1>
 
             {/* Divider */}
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="w-16 h-px bg-blue-700/30"></div>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <div className="w-16 h-px bg-blue-700/30" />
               <Sparkles className="w-4 h-4 text-blue-700" strokeWidth={1.5} />
-              <div className="w-16 h-px bg-blue-700/30"></div>
+              <div className="w-16 h-px bg-blue-700/30" />
             </div>
 
             {/* Subtitle */}
-            <p className="text-base md:text-lg text-[#6e6a64] leading-relaxed max-w-2xl mx-auto mb-10 font-light">
+            <p className="text-base md:text-lg text-[#6e6a64] leading-relaxed max-w-2xl mx-auto mb-7 font-light">
               At Catalystium Solutions, coaching is the foundation of everything
               we do. We strengthen leaders' ability to navigate complexity,
               align strategy with action, and embed learning for long-term
               results.
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="/services"
@@ -99,7 +87,6 @@ export default function SectionOne() {
                   strokeWidth={2}
                 />
               </a>
-
               <a
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-white text-blue-700 px-8 py-3 rounded-full text-sm font-medium border border-blue-700/20 hover:bg-[#efe7df] transition-all"
@@ -112,34 +99,33 @@ export default function SectionOne() {
         </div>
       </section>
 
-      {/* SECOND SECTION */}
-      <section className="relative bg-white py-24">
-        {/* Decorative elements */}
+      {/* ── SECOND SECTION ── */}
+      <section className="relative bg-white py-12 md:py-16">
         <div className="absolute inset-0">
-          <div className="absolute top-40 left-0 w-72 h-72 bg-blue-700/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-40 right-0 w-80 h-80 bg-[#f86f17]/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-0 w-72 h-72 bg-blue-700/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-0 w-80 h-80 bg-[#f86f17]/5 rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-[#efe7df] px-5 py-2 rounded-full mb-6 border border-blue-700/10">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-[#efe7df] px-5 py-2 rounded-full mb-4 border border-blue-700/10">
               <Award className="w-4 h-4 text-blue-700" strokeWidth={2} />
               <span className="text-xs text-[#6e6a64] tracking-wider font-medium">
                 Why Catalystium
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-light text-[#151412] mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-light text-[#151412] mb-3 tracking-tight">
               The{" "}
               <span className="font-semibold text-blue-700">Catalystium</span>{" "}
               Difference
             </h2>
 
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-20 h-px bg-blue-700/20"></div>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-20 h-px bg-blue-700/20" />
               <TrendingUp className="w-4 h-4 text-blue-700" strokeWidth={1.5} />
-              <div className="w-20 h-px bg-blue-700/20"></div>
+              <div className="w-20 h-px bg-blue-700/20" />
             </div>
 
             <p className="text-base text-[#6e6a64] max-w-2xl mx-auto font-light">
@@ -147,8 +133,8 @@ export default function SectionOne() {
             </p>
           </div>
 
-          {/* Feature Cards - Desktop Grid */}
-          <div className="hidden md:grid md:grid-cols-3 gap-6 mb-16">
+          {/* Feature Cards — Desktop */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6 mb-10">
             {[
               {
                 icon: Sparkles,
@@ -179,8 +165,7 @@ export default function SectionOne() {
                       ? "from-blue-700/20 to-blue-600/10"
                       : "from-[#f86f17]/20 to-[#ff8c5a]/10"
                   } opacity-0 group-hover:opacity-100 transition-opacity blur-sm`}
-                ></div>
-
+                />
                 <div className="relative h-full bg-[#efe7df] rounded-xl overflow-hidden border border-[#d4c4b4] group-hover:border-blue-700/30 transition-all">
                   <div className="p-6">
                     <div
@@ -195,19 +180,16 @@ export default function SectionOne() {
                         strokeWidth={2}
                       />
                     </div>
-
                     <h3 className="text-lg font-semibold text-[#151412] mb-3 group-hover:text-blue-700 transition-colors">
                       {item.title}
                     </h3>
-
                     <div
                       className={`w-12 h-px bg-gradient-to-r ${
                         item.accent === "blue"
                           ? "from-blue-700 to-transparent"
                           : "from-[#f86f17] to-transparent"
                       } rounded-full mb-3 group-hover:w-16 transition-all`}
-                    ></div>
-
+                    />
                     <p className="text-sm text-[#6e6a64] leading-relaxed">
                       {item.description}
                     </p>
@@ -217,9 +199,9 @@ export default function SectionOne() {
             ))}
           </div>
 
-          {/* Feature Cards - Mobile Scroll */}
+          {/* Feature Cards — Mobile */}
           <div
-            className="md:hidden overflow-x-auto -mx-6 px-6 mb-16"
+            className="md:hidden overflow-x-auto -mx-6 px-6 mb-10"
             ref={cardsRef}
           >
             <div className="flex gap-4 pb-4" style={{ width: "max-content" }}>
@@ -261,19 +243,16 @@ export default function SectionOne() {
                           strokeWidth={2}
                         />
                       </div>
-
                       <h3 className="text-lg font-semibold text-[#151412] mb-3">
                         {item.title}
                       </h3>
-
                       <div
                         className={`w-12 h-px bg-gradient-to-r ${
                           item.accent === "blue"
                             ? "from-blue-700 to-transparent"
                             : "from-[#f86f17] to-transparent"
                         } rounded-full mb-3`}
-                      ></div>
-
+                      />
                       <p className="text-sm text-[#6e6a64] leading-relaxed">
                         {item.description}
                       </p>
@@ -287,9 +266,8 @@ export default function SectionOne() {
           {/* Commitment Box */}
           <div className="max-w-4xl mx-auto">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-700/20 via-[#f86f17]/20 to-blue-700/20 rounded-xl opacity-50 group-hover:opacity-75 blur-lg transition-opacity"></div>
-
-              <div className="relative p-8 md:p-10 bg-white rounded-xl border border-blue-700/20 shadow-xl">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-700/20 via-[#f86f17]/20 to-blue-700/20 rounded-xl opacity-50 group-hover:opacity-75 blur-lg transition-opacity" />
+              <div className="relative p-7 md:p-9 bg-white rounded-xl border border-blue-700/20 shadow-xl">
                 <div className="flex flex-col md:flex-row items-start gap-6">
                   <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-700 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg">
                     <CheckCircle2
@@ -297,7 +275,6 @@ export default function SectionOne() {
                       strokeWidth={2.5}
                     />
                   </div>
-
                   <div className="flex-1">
                     <h4 className="text-2xl font-semibold text-[#151412] mb-3">
                       Our Commitment to You
@@ -308,36 +285,25 @@ export default function SectionOne() {
                       results—so transformation is practical, sustainable, and
                       real.
                     </p>
-
-                    {/* Key points */}
-                    <div className="grid md:grid-cols-3 gap-4 mt-6">
-                      <div className="flex items-start gap-2">
-                        <CheckCircle2
-                          className="w-4 h-4 text-blue-700 flex-shrink-0 mt-0.5"
-                          strokeWidth={2}
-                        />
-                        <span className="text-xs text-[#6e6a64]">
-                          Practical approach
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <CheckCircle2
-                          className="w-4 h-4 text-[#f86f17] flex-shrink-0 mt-0.5"
-                          strokeWidth={2}
-                        />
-                        <span className="text-xs text-[#6e6a64]">
-                          Measurable results
-                        </span>
-                      </div>
-                      <div className="flex items-start gap-2">
-                        <CheckCircle2
-                          className="w-4 h-4 text-blue-700 flex-shrink-0 mt-0.5"
-                          strokeWidth={2}
-                        />
-                        <span className="text-xs text-[#6e6a64]">
-                          Sustainable impact
-                        </span>
-                      </div>
+                    <div className="grid md:grid-cols-3 gap-4 mt-5">
+                      {[
+                        { color: "text-blue-700", label: "Practical approach" },
+                        {
+                          color: "text-[#f86f17]",
+                          label: "Measurable results",
+                        },
+                        { color: "text-blue-700", label: "Sustainable impact" },
+                      ].map((pt, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <CheckCircle2
+                            className={`w-4 h-4 ${pt.color} flex-shrink-0 mt-0.5`}
+                            strokeWidth={2}
+                          />
+                          <span className="text-xs text-[#6e6a64]">
+                            {pt.label}
+                          </span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
