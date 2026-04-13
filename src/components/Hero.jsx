@@ -13,6 +13,10 @@ import { useCalendly } from "../hooks/useCalendly";
 import coaching from "../assets/coaching.jpg";
 import strategy from "../assets/strategy.jfif";
 
+// Brand colors — no gradients on the right panel
+const NAVY = "#00284f";
+const ORANGE = "#f86a10";
+
 const slides = [
   {
     badge: "Coaching · Execution · Results",
@@ -20,15 +24,15 @@ const slides = [
     accent: "Igniting Transformation",
     sub: "We coach leaders and teams to think clearly and execute with confidence.",
     tags: [],
-    primaryLabel: "Explore Services",
-    primaryHref: "/services",
+    primaryLabel: "Learn More",
+    primaryHref: "/blogs",
     secondaryLabel: "Contact Us",
     secondaryHref: "/contact",
     secondaryIcon: "phone",
     image: heroLocal,
     imageAlt: "Leadership",
-    bg: { from: "#f86f17", via: "#c2410c", to: "#7c2d12" },
-    panelBg: "linear-gradient(135deg,#f86f17 0%,#ea580c 55%,#9a3412 100%)",
+    accentColor: ORANGE,
+    panelBg: NAVY, // slide 1 → navy
   },
   {
     badge: "Coaching",
@@ -36,15 +40,15 @@ const slides = [
     accent: "That Actually Works",
     sub: "1:1, group, and life coaching — built around your goals, not a template.",
     tags: ["1:1 Executive", "Group Cohorts", "Life Coaching"],
-    primaryLabel: "View Coaching",
-    primaryHref: "/services",
+    primaryLabel: "About Us",
+    primaryHref: "/about",
     secondaryLabel: "Book a Call",
     secondaryHref: null,
     secondaryIcon: "calendar",
     image: coaching,
     imageAlt: "Coaching",
-    bg: { from: "#1e3a8a", via: "#1d4ed8", to: "#3b82f6" },
-    panelBg: "linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 55%,#60a5fa 100%)",
+    accentColor: ORANGE,
+    panelBg: ORANGE, // slide 2 → orange
   },
   {
     badge: "Organizational Development",
@@ -52,15 +56,15 @@ const slides = [
     accent: "Systems Built to Last",
     sub: "Vision alignment, execution systems, and training for lasting change.",
     tags: ["Boards & Execs", "Corporate Training", "Culture Systems"],
-    primaryLabel: "View Strategy",
+    primaryLabel: "Explore Services",
     primaryHref: "/services",
     secondaryLabel: "Book a Call",
     secondaryHref: null,
     secondaryIcon: "calendar",
     image: strategy,
     imageAlt: "Strategy",
-    bg: { from: "#14532d", via: "#15803d", to: "#4ade80" },
-    panelBg: "linear-gradient(135deg,#14532d 0%,#15803d 55%,#4ade80 100%)",
+    accentColor: NAVY,
+    panelBg: NAVY, // slide 3 → navy
   },
   {
     badge: "Speaking & Insights",
@@ -68,16 +72,16 @@ const slides = [
     accent: "Keynotes & Leadership Talks",
     sub: "Tailored speaking engagements that turn insight into lasting action.",
     tags: ["Keynotes", "Leadership Summits", "Corporate Retreats"],
-    primaryLabel: "View Speaking",
-    primaryHref: "/services",
+    primaryLabel: "Get in Touch",
+    primaryHref: "/contact",
     secondaryLabel: "Book a Call",
     secondaryHref: null,
     secondaryIcon: "calendar",
     image:
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=90&fit=crop&crop=faces",
     imageAlt: "Speaking",
-    bg: { from: "#7c2d12", via: "#c2410c", to: "#f97316" },
-    panelBg: "linear-gradient(135deg,#7c2d12 0%,#c2410c 55%,#f97316 100%)",
+    accentColor: ORANGE,
+    panelBg: ORANGE, // slide 4 → orange
   },
 ];
 
@@ -94,11 +98,12 @@ function ImageCircle({ slides, current, mousePos, slide, size = 580 }) {
         position: "relative",
       }}
     >
+      {/* Spinning rings — use white so they show on both navy & orange */}
       <div
         className="absolute rounded-full"
         style={{
           inset: -18,
-          border: "1.5px solid rgba(255,255,255,0.18)",
+          border: "1.5px solid rgba(255,255,255,0.22)",
           borderRadius: "50%",
           animation: "spinSlow 18s linear infinite",
         }}
@@ -107,7 +112,7 @@ function ImageCircle({ slides, current, mousePos, slide, size = 580 }) {
         className="absolute rounded-full"
         style={{
           inset: -36,
-          border: "1px dashed rgba(255,255,255,0.1)",
+          border: "1px dashed rgba(255,255,255,0.12)",
           borderRadius: "50%",
           animation: "spinSlow 32s linear infinite reverse",
         }}
@@ -115,8 +120,9 @@ function ImageCircle({ slides, current, mousePos, slide, size = 580 }) {
       <div
         className="relative w-full h-full rounded-full overflow-hidden"
         style={{
-          boxShadow: `0 30px 80px rgba(0,0,0,0.55), 0 0 0 3px rgba(255,255,255,0.22)`,
-          background: slide.panelBg,
+          boxShadow: `0 30px 80px rgba(0,0,0,0.45), 0 0 0 3px rgba(255,255,255,0.22)`,
+          background: "#fff", // neutral base so images pop
+          transition: "background 0.6s ease",
         }}
       >
         {slides.map((s, i) => (
@@ -136,13 +142,14 @@ function ImageCircle({ slides, current, mousePos, slide, size = 580 }) {
           />
         ))}
       </div>
+      {/* Badge pill */}
       <div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap z-10"
         style={{
-          background: "rgba(0,0,0,0.55)",
+          background: "rgba(0,0,0,0.50)",
           backdropFilter: "blur(12px)",
-          border: "1px solid rgba(255,255,255,0.15)",
-          color: "rgba(255,255,255,0.9)",
+          border: "1px solid rgba(255,255,255,0.18)",
+          color: "rgba(255,255,255,0.92)",
           fontSize: "0.68rem",
           fontWeight: 600,
           letterSpacing: "2px",
@@ -234,18 +241,18 @@ export default function Hero() {
         className="relative z-10 flex flex-col justify-between w-full lg:w-[55%] px-8 md:px-14 lg:px-20 py-6 pt-20 lg:pt-28 lg:py-10 overflow-y-auto"
         style={{ flexShrink: 0 }}
       >
-        {/* Ambient glow */}
+        {/* Subtle ambient glow — no text-shadow effect */}
         <div
           className="absolute pointer-events-none rounded-full"
           style={{
-            width: 500,
-            height: 500,
-            background: `radial-gradient(circle, ${slide.bg.from}28 0%, transparent 70%)`,
-            top: "40%",
-            left: "30%",
-            transform: `translate(-50%,-50%) translate(${mousePos.x * 50}px,${mousePos.y * 50}px)`,
+            width: 420,
+            height: 420,
+            background: `radial-gradient(circle, ${slide.accentColor}18 0%, transparent 70%)`,
+            top: "50%",
+            left: "40%",
+            transform: `translate(-50%,-50%) translate(${mousePos.x * 40}px,${mousePos.y * 40}px)`,
             transition: "transform 0.7s ease, background 0.9s ease",
-            filter: "blur(40px)",
+            filter: "blur(50px)",
             zIndex: 0,
           }}
         />
@@ -254,7 +261,7 @@ export default function Hero() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            opacity: 0.025,
+            opacity: 0.022,
             backgroundImage:
               "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
             backgroundSize: "180px",
@@ -263,15 +270,13 @@ export default function Hero() {
 
         {/* ══════════════════════════════════
             MOBILE IMAGE CIRCLE — lg:hidden
-            Sits right below the navbar area,
-            above the badge and headline.
         ══════════════════════════════════ */}
         <div
           className="flex lg:hidden justify-center relative z-10 mb-5"
           key={`mobile-img-${current}`}
           style={{ animation: "slideUp 0.65s ease 0.05s both" }}
         >
-          {/* Soft coloured glow behind circle */}
+          {/* Glow halo behind circle */}
           <div
             style={{
               position: "absolute",
@@ -282,15 +287,14 @@ export default function Hero() {
               height: 240,
               borderRadius: "50%",
               background: slide.panelBg,
-              filter: "blur(32px)",
-              opacity: 0.45,
-              transition: "background 0.7s ease",
+              filter: "blur(36px)",
+              opacity: 0.38,
+              transition: "background 0.6s ease",
               zIndex: 0,
               pointerEvents: "none",
             }}
           />
 
-          {/* Circle wrapper */}
           <div
             style={{
               position: "relative",
@@ -300,7 +304,6 @@ export default function Hero() {
               flexShrink: 0,
             }}
           >
-            {/* Spinning decorative rings */}
             <div
               style={{
                 position: "absolute",
@@ -319,8 +322,6 @@ export default function Hero() {
                 animation: "spinSlow 32s linear infinite reverse",
               }}
             />
-
-            {/* The image circle itself */}
             <div
               style={{
                 width: "100%",
@@ -328,9 +329,9 @@ export default function Hero() {
                 borderRadius: "50%",
                 overflow: "hidden",
                 position: "relative",
-                boxShadow: `0 14px 48px rgba(0,0,0,0.28), 0 0 0 3px rgba(255,255,255,0.55)`,
-                background: slide.panelBg,
-                transition: "background 0.7s ease",
+                boxShadow: `0 14px 48px rgba(0,0,0,0.22), 0 0 0 3px rgba(255,255,255,0.6)`,
+                background: "#fff",
+                transition: "background 0.6s ease",
               }}
             >
               {slides.map((s, i) => (
@@ -366,7 +367,7 @@ export default function Hero() {
           >
             <span
               className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: slide.bg.to }}
+              style={{ background: slide.accentColor }}
             />
             {slide.badge}
           </span>
@@ -374,22 +375,21 @@ export default function Hero() {
 
         {/* MIDDLE: headline + body + CTAs */}
         <div className="relative z-10 flex flex-col" key={`body-${current}`}>
-          {/* Headline */}
+          {/* Headline — lighter weight, no text-shadow */}
           <div style={{ animation: "slideUp 0.65s ease 0.05s both" }}>
             <h1
               className="leading-[0.9] tracking-tight text-[#151412] mb-3"
               style={{
                 fontFamily: "'Playfair Display', serif",
                 fontSize: "clamp(2.6rem, 6.5vw, 6.5rem)",
-                fontWeight: 900,
-                textShadow: "0 4px 40px rgba(0,0,0,0.4)",
+                fontWeight: 600, // reduced from 900
               }}
             >
               {slide.headline[0]}
               <br />
               <span
                 style={{
-                  WebkitTextStroke: "2px rgba(21,20,18,0.7)",
+                  WebkitTextStroke: "1.5px rgba(21,20,18,0.55)", // softer stroke
                   color: "transparent",
                   display: "block",
                 }}
@@ -414,7 +414,7 @@ export default function Hero() {
             key={`rule-${current}`}
             style={{
               height: 1,
-              background: `linear-gradient(to right, ${slide.bg.from}, transparent)`,
+              background: `linear-gradient(to right, ${slide.accentColor}, transparent)`,
               borderRadius: 99,
               marginBottom: "1.2rem",
               animation: "expandWidth 0.8s ease 0.25s both",
@@ -465,7 +465,7 @@ export default function Hero() {
               </span>
               <div
                 className="absolute inset-0 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-full"
-                style={{ background: slide.bg.from }}
+                style={{ background: slide.accentColor }}
               />
             </a>
             <a
@@ -553,18 +553,22 @@ export default function Hero() {
 
       {/* ═══════════════════════════════════════
           RIGHT PANEL — desktop only (lg+)
+          Solid brand color, alternating navy / orange
       ═══════════════════════════════════════ */}
       <div
         className="hidden lg:block relative flex-1 overflow-hidden"
         style={{ flexShrink: 0 }}
       >
-        {/* Gradient background */}
+        {/* Solid background — transitions between navy & orange */}
         <div
-          className="absolute inset-0 z-0 transition-all duration-700"
-          style={{ background: slide.panelBg }}
+          className="absolute inset-0 z-0"
+          style={{
+            background: slide.panelBg,
+            transition: "background 0.7s ease",
+          }}
         />
 
-        {/* SVG organic wave mask */}
+        {/* SVG organic wave mask — beige bleed from left panel */}
         <svg
           className="absolute inset-0 w-full h-full z-[1] pointer-events-none"
           viewBox="0 0 700 900"
@@ -577,14 +581,14 @@ export default function Hero() {
           />
         </svg>
 
-        {/* Subtle grid */}
+        {/* Subtle dot-grid texture */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
-            opacity: 0.06,
+            opacity: 0.07,
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
+              "radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
         />
 
@@ -602,7 +606,7 @@ export default function Hero() {
           />
         </div>
 
-        {/* Right-side slide counter */}
+        {/* Slide counter */}
         <div className="absolute top-6 right-6 z-10 text-[11px] font-semibold text-white/50 tracking-[3px]">
           {String(current + 1).padStart(2, "0")} /{" "}
           {String(slides.length).padStart(2, "0")}
@@ -612,13 +616,13 @@ export default function Hero() {
       {/* ── PROGRESS BAR ── */}
       <div
         className="absolute bottom-0 left-0 right-0 z-20"
-        style={{ height: 2, background: "rgba(255,255,255,0.08)" }}
+        style={{ height: 2, background: "rgba(0,0,0,0.08)" }}
       >
         <div
           key={`progress-${current}`}
           style={{
             height: "100%",
-            background: `linear-gradient(to right, ${slide.bg.from}, ${slide.bg.to})`,
+            background: slide.accentColor,
             animation: "progressBar 6.5s linear forwards",
             width: 0,
           }}
@@ -626,7 +630,7 @@ export default function Hero() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
         @keyframes slideUp {
           from { opacity:0; transform:translateY(28px); }
