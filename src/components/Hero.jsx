@@ -32,7 +32,7 @@ const slides = [
     image: heroLocal,
     imageAlt: "Leadership",
     accentColor: ORANGE,
-    panelBg: NAVY, // slide 1 → navy
+    panelBg: ORANGE, // slide 1 → navy
   },
   {
     badge: "Coaching",
@@ -48,7 +48,7 @@ const slides = [
     image: coaching,
     imageAlt: "Coaching",
     accentColor: ORANGE,
-    panelBg: ORANGE, // slide 2 → orange
+    panelBg: NAVY, // slide 2 → orange
   },
   {
     badge: "Organizational Development",
